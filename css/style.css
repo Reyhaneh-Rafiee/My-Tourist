@@ -110,7 +110,105 @@ body {
     font-size: 1.5rem;
   }
 
+/*********************************** صفحه اصلی ****************************************/
+/* first section(landing) */
+.landing {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url(../images/background.jpg);
+  background-size: cover;
+  background-position: center center;
+    }
+  
+   .caption{
+  font-family: 'W_titr bold';
+  width: 100%;
+  position: absolute;
+  top: 40%;
+  color: #ffffff;
+  
+   }
+  
+  
+   /* login button */
+   .login-button {
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    font-family: "A Hemmat", sans-serif;
+    font-size: 22px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  
+  .login-button:hover {
+    background-color: #fff;
+    color: #0d1581;
+  }
+  
+  .login-button i {
+    margin-left: 5px;
+    font-size: 1.5rem;
+    transform: scaleX(-1);
+  }
+  
+  .login-button:active {
+    animation: button-click 0.1s linear;
+  }
+  
+  @keyframes button-click {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 
+  /* second section(About iran) */
+.AboutIran {
+  display: grid;
+  grid-template: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: white;
+  background-image: none;
+  text-align: justify;
+  text-align-last: right;
+  font-family: B Nazanin;
+}
+
+.paragraph{
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+h2.AboutIran{
+  font-size: 33px;
+  margin-right: 50px;
+  text-align: rtl;
+}
+
+img.AboutIran{
+  display: block;
+  margin: 0 auto;
+}
+
+ 
 /* footer */
 footer {
   font-family: "b nazanin";
@@ -182,4 +280,207 @@ footer ul li a {
   color: white;
   border-width: 5px;
   border-radius: 20px;
+}
+
+
+/* Third section(services) */
+.services-section {
+  background-image: linear-gradient(to bottom , #6c5b7b, #406f99);
+  color: #fff;
+}
+
+.jumbotron{
+  margin-bottom: 0;
+  padding: 2rem 0 3.5rem;
+  border-radius: 0;
+}
+
+h4.title{
+font-size: 1.5rem;
+font-weight: 800;
+}
+
+.underline{
+  width: 17rem;
+  height: 0.3rem;
+  background-color: #ff956b;
+  margin: 1rem auto 2rem;
+  opacity: 1;
+}
+
+.services i{
+  color: #ff956b;
+}
+
+h5.title{
+  margin-top: 15px;
+  font-size: 22px;
+  font-weight: 500;
+  font-family: "W_titr";
+  }
+
+p.text{
+  font-size: 14px;
+}
+
+/* fourth section (About Iran History) */
+.history {
+  display: grid;
+  grid-template: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: white;
+  background-image: none;
+  text-align: justify;
+  text-align-last: right;
+  font-family: "b nazanin";
+}
+
+.paragraph{
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+h2.history{
+  font-size: 33px;
+  margin-right: 50px;
+  text-align: rtl;
+}
+
+
+/*Slider*/
+.tour-icons div {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  margin-right: 10px;
+  padding: 3px;
+}
+
+.tour-name {
+  margin-left: 18px;
+  margin-top: 25px;
+}
+
+/* بخش اسلایدر */
+.slideshow-container {
+  position: relative;
+  background-image: linear-gradient(to bottom , #f67280,#f8b195,rgb(226, 222, 222));
+}
+
+/* اسلایدها */
+.mySlides {
+  display: none;
+  padding: 80px;
+  text-align: center;
+}
+
+/* دکمه اسلاید قبل و بعد */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -30px;
+  padding: 16px;
+  color: #888;
+  font-weight: bold;
+  font-size: 50px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  position: absolute;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #406f99;
+}
+
+.dot-container {
+  text-align: center;
+  padding: 20px;
+  background: #ddd;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* فاصله بین آیکون های اسلاید سوم */
+.mySlides:nth-child(3) .tour-icons div {
+  margin-right: 24px;
+}
+
+/* انیمیشن تغییر رنگ متن تیتر هر اسلاید */
+@keyframes color-animation {
+  0% {color: var(--color-1)}
+  32% {color: var(--color-1)}
+  33% {color: var(--color-2)}
+  65% {color: var(--color-2)}
+  66% {color: var(--color-3)}
+  99% {color: var(--color-3)}
+  100% {color: var(--color-1)}
+}
+
+.title-word {
+  animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 { --color-1: #ee5300; --color-2: #3D8DAE; --color-3: #eb4e4b; }
+.title-word-2 { --color-1: #a07008; --color-2: #238075; --color-3: #065055; }
+.title-word-3 { --color-1: #45837c; --color-2: #9e5453; --color-3: #5c7a77; }
+.title-word-4 { --color-1: #2883aa; --color-2: #a5552a; --color-3: #af4d4c; }
+.title-word-5 { --color-1: #6d034d; --color-2: #047294; --color-3: #a02422; }
+
+/* فونت تیتر اسلایدها */
+.mySlides h4 {
+  font-family: "B Mehr";
+  font-weight: 900;
+  font-size: 26px;
+}
+
+/* فونت نام ایکون ها در اسلایدها */
+.tour-name {
+  font-weight: 1000;
+  color: #b6375b;
+}
+
+
+/* the fifth section (short info about your tourism site) */
+.section5 {
+  background-color: rgb(255, 255, 255);
+  text-align: center;      /* عنوان وسط چین بمونه */
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: "b nazanin";
+  direction: rtl;          /* متن راست‌چین می‌شود */
+}
+
+.section5 h2 {
+  text-align: center;      /* عنوان وسط چین */
+}
+
+.section5 h6 {
+  font-size: 18px;
+  text-align: right;       /* متن اصلی راست‌چین */
+  max-width: 700px;        /* طول مناسب برای خوانایی */
+  margin: auto;            /* وسط صفحه قرار گیرد */
+  line-height: 1.6;        /* فاصله خطوط بهتر */
 }
