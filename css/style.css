@@ -689,3 +689,101 @@ footer ul li a {
   background-color: #fff;
   color: #0d1581;
 }
+
+
+/********************************* contact page************************************/
+  
+.contactbackground {
+  background-color: grey;
+  background-size: cover;
+  height: 100vh;
+}
+
+.box-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  max-width: 50%;
+  margin: auto;
+  height: 80%;
+}
+
+.firstHalf {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.firstHalf img {
+  display: flex;
+  border-radius: 9050px;
+}
+
+.text-big {
+  font-family: "Piazzolla", serif;
+  font-weight: bold;
+  font-size: 41px;
+  text-align: center;
+}
+
+.text-small {
+  font-family: "Sansita Swashed", cursive;
+  font-size: 22px;
+  text-align: center;
+}
+
+.contact-img{
+margin: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.contact-section {
+align-items: center;
+justify-content: center;
+color: #000000;
+}
+
+.contact-section h4{
+font-size: 1.8rem;
+font-weight: 800;
+}
+
+.contact-section hr{
+width: 17rem;
+height: 0.3rem;
+background-color: #0a0955;
+margin: 1rem auto 2rem;
+opacity: 1;
+}
+
+.contact-section i{
+width: 150px;
+height: 140px;
+line-height: 130px;
+text-align: center;
+border-radius: 30%;
+font-size: 80px;
+background-color: #7fbbd6;
+color: #0c1e57;
+}
+
+.contact-section h5{
+margin-top: 28px;
+font-size: 28px;
+font-weight: 500;
+font-family: "W_titr";
+}
+
+.contact-section p{
+  
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  margin-top: 30px;
+  font-size: 20px;
+}
