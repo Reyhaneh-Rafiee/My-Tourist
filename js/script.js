@@ -1,3 +1,40 @@
+/********************************************* FAQ page ***********************************/ 
+
+/* باکس سوالات متداول که با کلیک روی هر سوال پاسخ ان باز شود */
+const btns = document.querySelectorAll(".acc-btn");
+  // fn
+  function accordion() {
+    // this = the btn | icon & bg changed
+    this.classList.toggle("is-open");
+  
+    // the acc-content
+    const content = this.nextElementSibling;
+  
+    // IF open, close | else open
+    if (content.style.maxHeight) content.style.maxHeight = null;
+    else content.style.maxHeight = content.scrollHeight + "px";
+  }
+  // event
+  btns.forEach((el) => el.addEventListener("click", accordion));
+
+
+ /*********************************back to top page button*********************************************/
+$(document).ready(function(){
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 100) {
+      $('.back-to-top').fadeIn();
+    } else {
+      $('.back-to-top').fadeOut();
+    }
+  });
+  $('.back-to-top').click(function(){
+    $("html, body").animate({ scrollTop: 0 }, 1000);
+    return false;
+  });
+}); 
+
+
+
 /********************************************* search box *********************************************/
 //با کلیک روی دکمه سرچ، سرچ باکس باز شود
 const searchBtn = document.querySelector(".search-btn");
@@ -37,21 +74,6 @@ function showSlides(n) {
 }
 
 
-
-/*********************************back to top page button*********************************************/
-$(document).ready(function(){
-  $(window).scroll(function(){
-    if ($(this).scrollTop() > 100) {
-      $('.back-to-top').fadeIn();
-    } else {
-      $('.back-to-top').fadeOut();
-    }
-  });
-  $('.back-to-top').click(function(){
-    $("html, body").animate({ scrollTop: 0 }, 1000);
-    return false;
-  });
-});
 
 
 

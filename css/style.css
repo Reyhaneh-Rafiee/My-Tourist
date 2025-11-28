@@ -583,3 +583,109 @@ footer ul li a {
 }
 
 
+/************************************ FAQ page ************************************/
+.faq {
+  width: 100%;
+  min-height: 100vh;
+  font-size: 1.6rem;
+  line-height: 140%;
+  
+  opacity: 0.3;
+  opacity: 1;
+  display: grid;
+}
+.card {
+  background: #fff;
+  color: #333;
+  margin: 15rem auto;
+  width: 90%;
+  max-width: 50rem;
+  min-height: 30rem;
+  border-radius: 2rem;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  transform: translateY(-55%);
+}
+
+.faq-title {
+  text-align: center;
+  font-family: 'W_titr';
+  font-size: 50px;
+  padding: 1rem;
+}
+
+.acc-container {
+  padding: 4rem 2rem;
+}
+.acc-btn {
+  font-family: "b nazanin";
+  width: 100%;
+  padding: 1.2rem ;
+  font-size: 25px;
+  cursor: pointer;
+  background: inherit;
+  border: none;
+  outline: none;
+  text-align: justify;
+  text-align-last: right;
+  transition: all 0.5s linear;
+}
+.acc-btn:after {
+  content: "\27A4";
+  color: #f67280;
+  float: left;
+  transition: all 0.3s linear;
+}
+.acc-btn.is-open:after {
+  transform: rotate(90deg);
+}
+.acc-btn:hover, .acc-btn.is-open {
+  color: #000;
+  font-weight: bold;
+}
+
+.acc-content {
+  max-height: 0;
+  color: rgba(0,0,0,0.75);
+  font-size: 1.5rem;
+  margin: 0 2rem;
+  padding-left: 1rem;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  border-bottom: 1px solid #ccc;
+}
+
+.answer{
+  text-align: justify;
+  text-align-last: right;
+  font-family: "b nazanin";
+}
+
+.chat-with-admin-box{
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(5, 148, 177) 100%);
+  font-family: "b nazanin";
+  color: white;
+  text-align: center;
+  margin-bottom: 130px;
+  margin-top: 20px;
+  border-radius: 55px;
+}
+.chat-with-admin-box button {
+  margin: 10px;
+}
+.contact-us{
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  padding: 8px 16px;
+  align-items: center;
+}
+.contact-us:hover {
+  background-color: #fff;
+  color: #0d1581;
+}
