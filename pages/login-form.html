@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title > ورود  - گردشگر من</title>
+    <link rel="icon" href="../images/icon2.png" type="image/ico"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="login-form-page">
+    <div class="main-login-box">
+        <div class="logo-section">
+            <div class="logo-container">
+                <img src="../images/icon2.png" alt="گردشگر من" class="logo">
+                <span style="padding-left: 20px;"></span>
+                <a class="navbar-brand">  گردشگر من</a>
+            </div>
+            <img src="../images/gif2.gif" alt="گردشگر من" class="login-form-gif">
+        </div>
+        <div class="main-login-form">
+            <a href="../index.html" class="home-btn"><i class="fa fa-home"></i></a>
+            <label class="home-label">صفحه اصلی</label>
+            <input type="checkbox" id="chk" aria-hidden="true">
+            <div class="signin-form">
+                <form method="POST" action="../php/register.php">
+                    <label for="chk" aria-hidden="true"> ورود کاربر</label>
+                    <input type="text" name="txt" placeholder="نام و نام خانوادگی :" required="">
+                    <input type="email" name="email" placeholder="ایمیل:" required="">
+                    <input type="password" name="pswd" placeholder="رمز عبور:" required="">
+                    <input type="password" name="repeat_pswd" placeholder="تکرار رمز عبور:" required="">
+                    <button class="login-form-btn"> ورود</button>
+                </form>
+            </div>
+            <div class="log-in-form">
+                <form method="POST" action="../php/login.php">
+                    <label for="chk" aria-hidden="true">ورود ادمین</label>
+                    <input type="text" name="txt" placeholder="نام ادمین:" required="">
+                    <input type="text" name="id" placeholder="شناسه (ID):" required>
+                    <input type="password" name="pswd" placeholder="رمز عبور:" required="">
+                    <button class="login-form-btn">ورود</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
