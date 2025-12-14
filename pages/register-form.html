@@ -3,12 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ثبت نام کاربر - گردشگر من</title>
+    <title>ورود/ثبت نام - گردشگر من</title>
     <link rel="icon" href="../images/icon2.png" type="image/ico"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .auth-options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .auth-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 16px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .auth-btn.active {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn-register {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+        }
+        .btn-login-user {
+            background: linear-gradient(135deg, #2196F3 0%, #0D47A1 100%);
+            color: white;
+        }
+        .btn-login-admin {
+            background: linear-gradient(135deg, #f44336 0%, #b71c1c 100%);
+            color: white;
+        }
+        .form-container {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .form-container.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .form-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+        .form-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        .separator {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+        .separator:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #eee;
+        }
+        .separator span {
+            background: white;
+            padding: 0 15px;
+            position: relative;
+            color: #999;
+        }
+    </style>
 </head>
 <body class="login-form-page">
     <div class="main-login-box">
@@ -21,40 +111,134 @@
             <img src="../images/gif2.gif" alt="گردشگر من" class="login-form-gif">
         </div>
         
-        <div class="main-login-form">
+       <div class="main-login-form">
             <a href="../index.html" class="home-btn"><i class="fa fa-home"></i></a>
             <label class="home-label">صفحه اصلی</label>
+<br>
+<br>
+<br>
+<br>
+
+
             
-            <div class="signin-form">
-                <form method="POST" action="../php/register.php">
-                    <h3 style="text-align: center; margin-bottom: 25px; color: #4CAF50;">
-                        <i class="fas fa-user-plus"></i> ثبت نام کاربر جدید
-                    </h3>
-                    <input type="text" name="txt" placeholder="نام و نام خانوادگی" required>
-                    <input type="email" name="email" placeholder="ایمیل" required>
-                    <input type="password" name="pswd" placeholder="رمز عبور (حداقل ۶ کاراکتر)" required minlength="6">
-                    <input type="password" name="repeat_pswd" placeholder="تکرار رمز عبور" required>
-                    <button type="submit" class="login-form-btn" style="background: #4CAF50;">
-                        <i class="fas fa-check"></i> ثبت نام
-                    </button>
-                </form>
-                
-                <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee;">
-                    <p style="color: #666; margin-bottom: 10px;">آیا مدیر سیستم هستید؟</p>
-                    <a href="login-admin-form.html" class="btn" style="
-                        display: inline-block;
-                        padding: 8px 20px;
-                        background: #f44336;
-                        color: white;
-                        text-decoration: none;
-                        border-radius: 5px;
-                        font-size: 14px;
-                    ">
-                        <i class="fas fa-sign-in-alt"></i> ورود ادمین
-                    </a>
+            <!-- دکمه‌های انتخاب -->
+            <div class="auth-options">
+                <button class="auth-btn btn-register active" onclick="showForm('register')">
+                    <i class="fas fa-user-plus"></i> ثبت نام کاربر
+                </button>
+                <button class="auth-btn btn-login-user" onclick="showForm('login-user')">
+                    <i class="fas fa-sign-in-alt"></i> ورود کاربر
+                </button>
+                <button class="auth-btn btn-login-admin" onclick="showForm('login-admin')">
+                    <i class="fas fa-user-shield"></i> ورود ادمین
+                </button>
+            </div>
+            
+            <!-- فرم ثبت نام کاربر -->
+            <div id="register-form" class="form-container active">
+                <div class="form-box">
+                    <h3 class="form-title">ثبت نام کاربر جدید</h3>
+                    <form method="POST" action="../php/register.php">
+                        <input type="text" name="fullname" placeholder="نام و نام خانوادگی" required>
+                        <input type="email" name="email" placeholder="ایمیل" required>
+                        <input type="password" name="password" placeholder="رمز عبور (حداقل 6 کاراکتر)" required minlength="6">
+                        <input type="password" name="repeat_password" placeholder="تکرار رمز عبور" required>
+                        <button type="submit" class="login-form-btn" style="background: #4CAF50;">
+                            <i class="fas fa-check"></i> ثبت نام
+                        </button>
+                    </form>
+                    <div class="form-note">
+                        با ثبت نام، به جمع کاربران گردشگر من می‌پیوندید
+                    </div>
                 </div>
             </div>
+            
+            <!-- فرم ورود کاربر -->
+            <div id="login-user-form" class="form-container">
+                <div class="form-box">
+                    <h3 class="form-title">ورود کاربر</h3>
+                    <form method="POST" action="../php/login-user.php">
+                        <input type="email" name="email" placeholder="ایمیل" required>
+                        <input type="password" name="password" placeholder="رمز عبور" required>
+                        <button type="submit" class="login-form-btn" style="background: #2196F3;">
+                            <i class="fas fa-sign-in-alt"></i> ورود
+                        </button>
+                    </form>
+                    <div class="form-note">
+                        حساب کاربری دارید؟ وارد شوید
+                    </div>
+                </div>
+            </div>
+            
+            <!-- فرم ورود ادمین -->
+            <div id="login-admin-form" class="form-container">
+                <div class="form-box">
+                    <h3 class="form-title">ورود مدیر سیستم</h3>
+                    <form method="POST" action="../php/login.php">
+                        <input type="text" name="txt" placeholder="نام ادمین" required>
+                        <input type="text" name="id" placeholder="شناسه (ID)" required>
+                        <input type="password" name="pswd" placeholder="رمز عبور" required>
+                        <button type="submit" class="login-form-btn" style="background: #f44336;">
+                            <i class="fas fa-sign-in-alt"></i> ورود ادمین
+                        </button>
+                    </form>
+                    <div class="form-note">
+                        فقط برای مدیران سیستم
+                    </div>
+                </div>
+            </div>
+            
+         
         </div>
     </div>
+    
+    <script>
+        // تابع نمایش فرم‌ها
+        function showForm(formType) {
+            // مخفی کردن همه فرم‌ها
+            document.querySelectorAll('.form-container').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            // غیرفعال کردن همه دکمه‌ها
+            document.querySelectorAll('.auth-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // نمایش فرم انتخاب شده
+            document.getElementById(formType + '-form').classList.add('active');
+            
+            // فعال کردن دکمه مربوطه
+            document.querySelector('.btn-' + formType.replace('-', '')).classList.add('active');
+        }
+        
+        // مقداردهی اولیه - فرم ثبت نام نمایش داده شود
+        document.addEventListener('DOMContentLoaded', function() {
+            showForm('register');
+            
+            // چک کن اگر از صفحه خاصی آمده‌ایم
+            const urlParams = new URLSearchParams(window.location.search);
+            const formType = urlParams.get('form');
+            if (formType && ['register', 'login-user', 'login-admin'].includes(formType)) {
+                showForm(formType);
+            }
+        });
+        
+        // ذخیره آخرین فرم انتخاب شده
+        document.querySelectorAll('.auth-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const formType = this.getAttribute('onclick').match(/'(\w+-?\w+)'/)[1];
+                localStorage.setItem('lastSelectedForm', formType);
+            });
+        });
+        
+        // بازیابی آخرین فرم انتخاب شده
+        window.addEventListener('load', function() {
+            const lastForm = localStorage.getItem('lastSelectedForm');
+            if (lastForm) {
+                showForm(lastForm);
+            }
+        });
+    </script>
 </body>
 </html>

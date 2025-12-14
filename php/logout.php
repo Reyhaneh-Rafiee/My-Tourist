@@ -1,16 +1,13 @@
 <?php
-session_start();
-
-// پاک کردن session
-session_unset();
-session_destroy();
-
-// حذف کوکی session
-if (isset($_COOKIE[session_name()])) {
-    setcookie(session_name(), '', time() - 3600, '/');
+// شروع سشن
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
 }
 
+// تخریب سشن
+session_destroy();
+
 // هدایت به صفحه اصلی
-header("Location: ../login-form.html");
+header("Location: ../index.html");
 exit();
 ?>
