@@ -10,23 +10,6 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
 
 </head>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // گرفتن همه سلول‌های ستون قیمت
-    const priceCells = document.querySelectorAll('table.table tbody tr td:nth-child(4)');
-
-    priceCells.forEach(function(cell){
-        let value = cell.textContent.trim();
-        if(!isNaN(value) && value !== ''){
-            // جدا کردن سه رقم سه رقم
-            let formatted = Number(value).toLocaleString('en-US');
-            // قرار دادن متن سمت چپ با "تومان"
-            cell.innerHTML = formatted + ' تومان';
-        }
-    });
-});
-</script>
-
 <body>
   
 
@@ -59,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <!-- table list -->
                 <div class="card mb-3">
                     <div class="card-header">
-                    لیست تور ها
+                        لیست جاذبه ها
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -69,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
                                     <th>ردیف</th>
                                     <th>تصویر</th>
                                     <th>نام</th>
-                                    <th>قیمت</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
 
@@ -79,9 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
                               
                                 <tr>
                                     <td>1</td>
-                                    <td><img src="admin-images/qleh_flk_alaflak.jpg" width="100px" height="70px"></td>
-                                    <td>تور 3 روزه قله فلک</td>
-                                    <td>7500000</td>
+                                    <td><img src="admin-images/esfehan.png" width="100px" height="70px"></td>
+                                    <td>سی وسه پل</td>
                                       <td>
                                         <a href="" class="btn btn-warning">ویرایش</a>
                                     </td>
