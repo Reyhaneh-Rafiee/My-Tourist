@@ -9,6 +9,38 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
 
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById('imageInput');
+    const preview = document.getElementById('imagePreview');
+
+    input.addEventListener('change', function(event){
+        const file = event.target.files[0];
+        if(file){
+            const reader = new FileReader();
+            reader.onload = function(e){
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const textarea = document.querySelector('textarea[name="desc"]');
+
+    textarea.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // جلوگیری از ایجاد خط جدید
+            this.form.submit(); // ارسال فرم
+        }
+        // اگر Shift+Enter باشه، کاری انجام نمیده و خط جدید ایجاد میشه
+    });
+});
+
+</script>
+
+
 <body>
 <nav class="nav top-bar">
     <h2 class="float-left">Admin Panel</h2>
@@ -49,14 +81,22 @@
                     </div>
                 </div><!--Main Content-->
                 <aside class="col-md-4">
-                    <div class="form-group">
-                        <input type="reset" class="btn btn-warning btn-lg" value="پاک کردن">
-                        <input type="submit" class="btn btn-primary btn-lg" value="افزودن">
-                    </div>
+                   <div class="form-group d-flex justify-content-between action-buttons">
+    <input type="reset" class="btn btn-warning w-50 me-4" value="پاک کردن">
+    <input type="submit" class="btn btn-primary w-50" value="افزودن">
+</div>
+
+                    
                    
-                    <div class="form-group">
-                        <input name="image" type="file" class="form-control-file">
-                    </div>
+                  <div class="form-group image-upload-box">
+    <label>انتخاب عکس</label>
+    <input type="file" accept="image/*" class="form-control-file" id="imageInput">
+    <div class="image-preview mt-2">
+        <img id="imagePreview" alt="پیش‌نمایش عکس">
+    </div>
+</div>
+
+
                 </aside><!--SIDEBAR-->
             </div>
         </form>

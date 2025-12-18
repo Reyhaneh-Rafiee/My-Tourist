@@ -26,10 +26,19 @@
                 <a href="../php/logout.php">خروج</a>
             </div>
         </div>
+        
 <div class="card mb-3">
+    
     <div class="card-header">
        سفارشات
     </div>
+     <form action="index.php" method="get">
+    <div class="input-group" >
+    <input style="direction: rtl;" type="text" placeholder="search" name="search" class="form-control text-end">
+    <button class="btn btn-primary" name="search-btn">Go</button>
+</div>
+
+       </form>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table float-right" style="direction: rtl">
