@@ -11,6 +11,8 @@
 
 </head>
 <body>
+  
+
 <nav class="nav top-bar">
     <h2 class="float-left">Admin Panel</h2>
 </nav>
@@ -29,7 +31,12 @@
         </div>
         <div class="col-10">
 
-          
+          <form action="index.php" method="get">
+                        <div class="input-group">
+                            <input type="text" placeholder="search" name="search" class="form-control">
+                            <button class="btn btn-primary" name="search-btn">Go</button>
+                        </div>
+                    </form>
                 <!-- table list -->
                 <div class="card mb-3">
                     <div class="card-header">
@@ -44,6 +51,7 @@
                                     <th>تصویر</th>
                                     <th>نام</th>
                                     <th>قیمت</th>
+                                    <th>ویرایش</th>
                                     <th>حذف</th>
 
                                 </tr>
@@ -55,6 +63,9 @@
                                     <td><img src="admin-images/esfehan.png" width="100px" height="70px"></td>
                                     <td>تور 3 روزه اصفهان</td>
                                     <td>7500000</td>
+                                      <td>
+                                        <a href="" class="btn btn-warning">ویرایش</a>
+                                    </td>
                                     <td>
                                         <a href="" class="btn btn-danger">حذف</a>
                                     </td>
