@@ -110,6 +110,13 @@ body {
     font-size: 1.5rem;
   }
 
+.index-page .navbar form.d-flex,
+.index-page .navbar .search-container {
+  display: none !important;
+}
+
+
+  
 
   /*back to top page button*/
 .back-to-top {
@@ -755,7 +762,6 @@ font-family: "W_titr";
 .thumbnail:hover img{
   opacity: .5;
 }
-
 
 
 

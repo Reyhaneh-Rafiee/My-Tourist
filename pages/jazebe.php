@@ -260,7 +260,7 @@
                         <a class="nav-link" href="about-us.html">درباره ما</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="tours.html">تورها</a>
+                        <a class="nav-link" href="tours.php">تورها</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="jazebe.php">جاذبه ها</a>
