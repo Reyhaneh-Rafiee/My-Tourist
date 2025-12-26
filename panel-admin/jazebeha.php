@@ -10,27 +10,6 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
 
 </head>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // گرفتن همه سلول‌های ستون قیمت
-    const priceCells = document.querySelectorAll('table.table tbody tr td:nth-child(4)');
-
-    priceCells.forEach(function(cell){
-        let value = cell.textContent.trim();
-        // حذف "ریال" اگر وجود دارد
-        value = value.replace(' ریال', '');
-        value = value.replace(/,/g, '');
-        
-        if(!isNaN(value) && value !== ''){
-            // جدا کردن سه رقم سه رقم
-            let formatted = Number(value).toLocaleString('en-US');
-            // قرار دادن متن سمت چپ با "ریال"
-            cell.innerHTML = formatted + ' ریال';
-        }
-    });
-});
-</script>
-
 <body>
   
 
@@ -54,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
         <div class="col-10">
 
-          <form action="index.php" method="get">
+          <form action="jazebeha.php" method="get">
                         <div class="input-group">
                             <input type="text" placeholder="search" name="search" class="form-control" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                             <button class="btn btn-primary" name="search-btn">Go</button>
@@ -63,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <!-- table list -->
                 <div class="card mb-3">
                     <div class="card-header">
-                    لیست تور ها
+                        لیست جاذبه ها
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -73,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
                                     <th>ردیف</th>
                                     <th>تصویر</th>
                                     <th>نام</th>
-                                    <th>قیمت</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
 
@@ -97,23 +75,22 @@ document.addEventListener("DOMContentLoaded", function() {
                                 $conn->set_charset("utf8");
                                 
                                 // جستجو
-                                $sql = "SELECT * FROM tours";
+                                $sql = "SELECT * FROM jazebe";
                                 
                                 if (isset($_GET['search']) && !empty($_GET['search'])) {
                                     $search = $conn->real_escape_string($_GET['search']);
                                     $sql .= " WHERE title LIKE '%$search%' OR description LIKE '%$search%'";
                                 }
                                 
-                                $sql .= " ORDER BY t_id DESC";
+                                $sql .= " ORDER BY j_id DESC";
                                 
                                 $result = $conn->query($sql);
                                 
                                 if ($result && $result->num_rows > 0) {
                                     $counter = 1;
                                     while($row = $result->fetch_assoc()) {
-                                        $id = $row['t_id'];
+                                        $id = $row['j_id'];
                                         $title = htmlspecialchars($row['title']);
-                                        $price = isset($row['price']) ? $row['price'] : 0;
                                         $image_path = $row['image_path'];
                                         
                                         // مسیر تصویر
@@ -128,12 +105,11 @@ document.addEventListener("DOMContentLoaded", function() {
                                             <td><?php echo $counter; ?></td>
                                             <td><img src="<?php echo $image_src; ?>" width="100px" height="70px" onerror="this.src='admin-images/default.jpg'"></td>
                                             <td><?php echo $title; ?></td>
-                                            <td><?php echo number_format($price); ?></td>
                                               <td>
-                                                <a href="edit-tour.php?id=<?php echo $id; ?>" class="btn btn-warning">ویرایش</a>
+                                                <a href="edit-jazebe.php?id=<?php echo $id; ?>" class="btn btn-warning">ویرایش</a>
                                             </td>
                                             <td>
-                                                <a href="delete-tour.php?id=<?php echo $id; ?>" class="btn btn-danger" onclick="return confirm('آیا از حذف این تور مطمئن هستید؟')">حذف</a>
+                                                <a href="delete-jazebe.php?id=<?php echo $id; ?>" class="btn btn-danger" onclick="return confirm('آیا از حذف این جاذبه مطمئن هستید؟')">حذف</a>
                                             </td>
                                             
                                         </tr>
@@ -143,10 +119,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                 } else {
                                     ?>
                                     <tr>
-                                        <td colspan="6" style="text-align: center; padding: 50px;">
-                                            <p>هیچ توری یافت نشد.</p>
+                                        <td colspan="5" style="text-align: center; padding: 50px;">
+                                            <p>هیچ جاذبه‌ای یافت نشد.</p>
                                             <?php if (isset($_GET['search']) && !empty($_GET['search'])): ?>
-                                            <a href="index.php" class="btn btn-secondary">نمایش همه تورها</a>
+                                            <a href="jazebeha.php" class="btn btn-secondary">نمایش همه جاذبه‌ها</a>
                                             <?php endif; ?>
                                         </td>
                                     </tr>
@@ -171,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     deleteButtons.forEach(button => {
         button.addEventListener('click', function(e) {
-            if (!confirm('آیا از حذف این تور مطمئن هستید؟')) {
+            if (!confirm('آیا از حذف این جاذبه مطمئن هستید؟')) {
                 e.preventDefault();
             }
         });
@@ -180,3 +156,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+[file content end]

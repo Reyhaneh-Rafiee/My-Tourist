@@ -71,12 +71,12 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="row admin-panel">
         <div class="col-2">
             <div class="list-item">
-                <a href="index.html">پیشخوان</a>
+                <a href="index.php">پیشخوان</a>
                 <a href="../index.html">مشاهده سایت</a>
                 <a href="add-new-tour.html">تور جدید</a>
-                <a href="orders.html">سفارشات تور</a>
+                <a href="orders.php">سفارشات تور</a>
                 <a href="add-new-jazebe.html">جاذبه جدید</a>
-                                 <a href="jazebeha.html">جاذبه ها</a>
+                                 <a href="jazebeha.php">جاذبه ها</a>
 
                 <a href="../php/logout.php">خروج</a>
             </div>
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     </div>
                     <div class="form-group row">
                         <div class="col-xs-3">
-                          <input name="price" type="text" class="form-control" id="priceInput" placeholder="قیمت">
+                          <input name="price" type="number" class="form-control" id="priceInput" placeholder="قیمت">
                         </div>
                     </div>
                 </div><!--Main Content-->
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     <div class="form-group image-upload-box">
     <label>انتخاب عکس</label>
-    <input type="file" accept="image/*" class="form-control-file" id="imageInput">
+    <input type="file" name="image" accept="image/*" class="form-control-file" id="imageInput">
     <div class="image-preview mt-2">
         <img id="imagePreview" alt="پیش‌نمایش عکس">
     </div>

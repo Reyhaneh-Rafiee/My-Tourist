@@ -422,7 +422,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                    <button type="button" class="btn btn-primary">رزرو تور</button>
+                 <a href="reserve-tour.php?id=' . $id . '><button type="button" class="btn btn-primary">رزرو تور</button></a>
                 </div>
             </div>
         </div>

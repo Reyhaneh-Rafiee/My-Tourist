@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['user_type'] = 'admin';
                 
                 // هدایت به پنل ادمین
-                header("Location: ../panel-admin/index.html");
+                header("Location: ../panel-admin/index.php");
                 exit();
             } else {
                 $errors[] = "شناسه (ID) صحیح نیست";
