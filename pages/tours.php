@@ -261,13 +261,8 @@
                         <a class="nav-link" href="contact.html">تماس با ما</a>
                     </li>
                 </ul>
-                <span style="padding-left: 100px;"></span>
-                <form class="d-flex">
-                    <div class="search-container">
-                        <input type="search" id="form1" class="form-control" placeholder="جستجو..." />
-                        <button type="button" class="search-btn">
-                            <i class="fas fa-search"></i>
-                        </button>
+                <span style="padding-left: 200px;"></span>
+                
                     </div>
                 </form>
             </div>
@@ -333,7 +328,7 @@
                               </div>';
                     }
                     
-                    echo '<div class="price-badge">' . $price . ' ریال</div>';
+                    echo '<div class="price-badge">' . $price . ' تومان</div>';
                     
                     echo '
                             </div>
@@ -422,7 +417,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                 <a href="reserve-tour.php?id=' . $id . '><button type="button" class="btn btn-primary">رزرو تور</button></a>
+                    <a id="modalReserveLink" href="#">
+                     <button type="button" class="btn btn-primary">رزرو تور</button>
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -456,7 +454,10 @@
                     </div>
                 </div>
             `);
-            
+            var tourId = card.find('.reserve-btn').attr('href');
+            $('#modalReserveLink').attr('href', tourId);
+
+
             var modal = new bootstrap.Modal(document.getElementById('tourModal'));
             modal.show();
         });

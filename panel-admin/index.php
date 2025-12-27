@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // جدا کردن سه رقم سه رقم
             let formatted = Number(value).toLocaleString('en-US');
             // قرار دادن متن سمت چپ با "ریال"
-            cell.innerHTML = formatted + ' ریال';
+            cell.innerHTML = formatted + ' تومان';
         }
     });
 });

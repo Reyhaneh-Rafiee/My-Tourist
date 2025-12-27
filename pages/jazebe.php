@@ -272,13 +272,8 @@
                         <a class="nav-link" href="contact.html">تماس با ما</a>
                     </li>
                 </ul>
-                <span style="padding-left: 100px;"></span>
-                <form class="d-flex">
-                    <div class="search-container">
-                        <input type="search" id="form1" class="form-control" placeholder="جستجو..." />
-                        <button type="button" class="search-btn">
-                            <i class="fas fa-search"></i>
-                        </button>
+                <span style="padding-left: 200px;"></span>
+                
                     </div>
                 </form>
             </div>

@@ -188,7 +188,7 @@ $tour_stmt->close();
                         <p><i class="fas fa-map-marker-alt me-2"></i> مقصد: <?php echo htmlspecialchars($tour['destination'] ?? 'ایران'); ?></p>
                     </div>
                     <div class="col-md-6 text-left">
-                        <h3 class="mb-0"><?php echo number_format($tour['price']); ?> ریال</h3>
+                        <h3 class="mb-0"><?php echo number_format($tour['price']); ?> تومان</h3>
                         <small>به ازای هر نفر</small>
                     </div>
                 </div>
@@ -230,7 +230,7 @@ $tour_stmt->close();
                         
                         <div class="price-display">
                             <span>مبلغ قابل پرداخت: </span>
-                            <span class="text-success"><?php echo number_format($tour['price']); ?> ریال</span>
+                            <span class="text-success"><?php echo number_format($tour['price']); ?> تومان</span>
                         </div>
                         
                         <!-- اطلاعات کاربر از دیتابیس -->
