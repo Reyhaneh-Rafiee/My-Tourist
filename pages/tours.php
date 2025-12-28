@@ -41,6 +41,31 @@
             line-height: 1.6;
         }
         
+        /* استایل برای جستجو */
+        .search-box {
+            max-width: 600px;
+            margin: 30px auto 40px;
+        }
+        
+        .search-box .input-group {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        
+        .search-box .form-control {
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+        }
+        
+        .search-box .btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border: none;
+            border-radius: 0 30px 30px 0;
+        }
+        
         /* کارت تور */
         .tour-card {
             border: 1px solid #eaeaea;
@@ -276,6 +301,16 @@
             <h1>تورهای گردشگری ایران</h1>
             <p>با بهترین تورهای داخلی ایران، سفری به یادماندنی را تجربه کنید</p>
         </div>
+        
+        <!-- بخش جستجو -->
+        <div class="search-box">
+            <div class="input-group">
+                <input type="text" class="form-control" id="search-input" placeholder="جستجوی تورها...">
+                <button class="btn btn-primary" id="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
 
         <!-- نمایش تورها -->
         <div class="row" id="tours-list">
@@ -315,7 +350,7 @@
                     
                     // نمایش کارت
                     echo '
-                    <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="col-lg-4 col-md-6 mb-4 tour-item">
                         <div class="card tour-card">
                             <div class="tour-img-container">';
                     
@@ -420,7 +455,6 @@
                     <a id="modalReserveLink" href="#">
                      <button type="button" class="btn btn-primary">رزرو تور</button>
                     </a>
-
                 </div>
             </div>
         </div>
@@ -432,6 +466,52 @@
     
     <script>
     $(document).ready(function() {
+        // جستجوی تورها
+        $('#search-btn').click(searchTours);
+        $('#search-input').keypress(function(e) {
+            if (e.which == 13) searchTours();
+        });
+        
+        function searchTours() {
+            var searchTerm = $('#search-input').val().trim().toLowerCase();
+            if (searchTerm) {
+                $('.tour-item').each(function() {
+                    var title = $(this).find('.tour-title').text().toLowerCase();
+                    var desc = $(this).find('.tour-description').text().toLowerCase();
+                    var price = $(this).find('.price-badge').text().toLowerCase();
+                    
+                    if (title.includes(searchTerm) || desc.includes(searchTerm) || price.includes(searchTerm)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+                
+                // اگر هیچ نتیجه‌ای یافت نشد
+                if ($('.tour-item:visible').length === 0) {
+                    // حذف هشدارهای قبلی
+                    $('.search-alert').remove();
+                    
+                    $('#tours-list').prepend(`
+                        <div class="col-12 search-alert">
+                            <div class="alert alert-warning text-center">
+                                <i class="fas fa-search"></i>
+                                هیچ توری با عبارت "${$('#search-input').val()}" یافت نشد.
+                                <button type="button" class="btn btn-sm btn-outline-warning ms-3" onclick="$('.tour-item').show(); $('.search-alert').remove();">
+                                    نمایش همه تورها
+                                </button>
+                            </div>
+                        </div>
+                    `);
+                } else {
+                    $('.search-alert').remove();
+                }
+            } else {
+                $('.tour-item').show();
+                $('.search-alert').remove();
+            }
+        }
+        
         // نمایش جزئیات تور در مودال
         $(document).on('click', '.tour-description', function() {
             var card = $(this).closest('.tour-card');
@@ -457,7 +537,6 @@
             var tourId = card.find('.reserve-btn').attr('href');
             $('#modalReserveLink').attr('href', tourId);
 
-
             var modal = new bootstrap.Modal(document.getElementById('tourModal'));
             modal.show();
         });
@@ -467,6 +546,28 @@
             $(this).attr('src', '../images/default-tour.jpg');
             $(this).closest('.tour-img-container').addClass('no-image');
         });
+        
+        // تنظیم ارتفاع یکسان برای کارت‌ها
+        function setEqualHeight() {
+            var maxHeight = 0;
+            $('.tour-card').each(function() {
+                var height = $(this).outerHeight();
+                if (height > maxHeight) {
+                    maxHeight = height;
+                }
+            });
+            
+            // فقط اگر تفاوت ارتفاع زیاد باشد تنظیم کنیم
+            $('.tour-card').each(function() {
+                if ($(this).outerHeight() < maxHeight - 20) {
+                    $(this).css('height', maxHeight + 'px');
+                }
+            });
+        }
+        
+        // بعد از بارگذاری تصاویر ارتفاع را تنظیم کن
+        setTimeout(setEqualHeight, 500);
+        $(window).on('resize', setEqualHeight);
     });
     </script>
 </body>
