@@ -157,7 +157,67 @@
 </div>
 <br><br><br>
 
-  
+  <!-------------------------------------- Chat box ---------------------------------------->
+
+ <!--button chat-->
+ <div id="chat-circle" class="btn btn-raised">
+  <div id="chat-overlay"></div>
+  <img class="chat-circle_robot" src="../images/chat.png" >
+</div>
+<!--chat-box-->
+<div class="chat-box">
+  <div class="chat-box-body">
+      <!--welcome message-->
+      <div class="chat-box-welcome__header">
+          <div class="chat-box__header-text">
+              <span class="chat-box-toggle"><i class="fa fa-window-close" ></i></span>
+          </div>
+          <div id="chat-box-welcome__ava">
+              <img class="chat-box-welcome_robot" src="../images/chat.png">
+          </div>
+          <br>
+          <div class="chat-box-welcome__welcome-text">
+            <span dir="auto"><p>
+              به گردشگر من خوش آمدید .
+              <br>
+              برای راهنمایی در رزرو تورهای داخلی، قیمت‌ها و برنامه سفر، در خدمت شما هستیم.
+              </p>
+              </span>
+          </div>
+      </div>
+      <!--chat-box after welcome page-->
+      <div id="chat-box__wraper">
+          <div class="chat-box-header">
+              <span class="chat-box-toggle"><i class="fa fa-window-close"  ></i></span>
+          </div>
+          <div class="chat-box-overlay">
+          </div>
+          <div class="chat-logs">
+              <div id="cm-msg-0" class="chat-msg bot">
+                  <span class="msg-avatar">
+             <img class="chat-box-overlay_robot" src="../images/icon33.png">          
+             </span>
+             <span dir="auto">
+                  <div class="cm-msg-text">
+                    سلام 👋  
+                    به «گردشگر من» خوش اومدی 🌍  
+                    اگه درباره تورهای داخلی، رزرو، قیمت‌ها یا زمان‌بندی سفر سوالی داری، من کنارت هستم 😊
+                    
+                  </span></div>
+              </div>
+      </div>
+  </div>
+  <div class="chat-input-box" id="chatLog">
+    <span dir="auto">
+      <form class="chat-input__form">
+         <input type="text" class="chat-input__text" id="chat-input__text" placeholder="پیام را ارسال کنید..." /></span> 
+          <button type="submit" class="chat-submit" id="chat-submit">
+            <i class="material-icons">ارسال</i>
+        </button>
+      </form>
+  </div>
+</div>
+</div>
   
    <!----------------------------------footer--------------------------------->
 <footer>

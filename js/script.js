@@ -1,3 +1,83 @@
+/********************************************* chat box ***********************************/ 
+$(document).ready(function () {
+
+  // باز شدن چت → فقط welcome
+  $("#chat-circle").click(function () {
+    $("#chat-circle").hide();
+    $(".chat-box").show();
+    $(".chat-box-welcome__header").show(); //  welcome
+    $("#chat-box__wraper").hide();          //  هنوز نرو تو چت
+  });
+
+  // کلیک روی welcome یا input → رفتن داخل چت
+  $(".chat-box-welcome__header, #chat-input__text").click(function () {
+    $(".chat-box-welcome__header").hide();
+    $("#chat-box__wraper").show();
+  });
+
+  // بستن چت
+  $(".chat-box-toggle").click(function () {
+    $("#chat-circle").show();
+    $(".chat-box").hide();
+    $(".chat-box-welcome__header").hide();
+    $("#chat-box__wraper").hide();
+  });
+
+  // منطق پاسخ ربات
+  function botAnswer(text) {
+    text = text.toLowerCase();
+
+    if (text.includes("سلام"))
+      return "سلام 👋 به گردشگرمن خوش اومدی. آماده‌ای برای انتخاب تور؟";
+
+    if (text.includes("تور"))
+      return "تورهای داخلی ما شامل شمال، مشهد، کیش، شیراز و اصفهان هستن 🌍";
+
+    if (text.includes("رزرو"))
+      return "برای رزرو تور، کافیه وارد صفحه تور بشی و فرم رزرو رو پر کنی.";
+
+    if (text.includes("قیمت"))
+      return "قیمت هر تور داخل صفحه خودش درج شده 💰";
+
+    if (text.includes("پرداخت"))
+      return "پرداخت کاملاً آنلاین و امن انجام میشه 💳";
+
+    return "اگر سوالی درباره تورها یا رزرو داری، بپرس 😊";
+  }
+
+  // ارسال پیام
+  $(".chat-input__form").on("submit", function (e) {
+    e.preventDefault();
+
+    let msg = $(".chat-input__text").val().trim();
+    if (!msg) return;
+
+    $(".chat-logs").append(`
+      <div class="chat-msg self">
+        <div class="cm-msg-text">${msg}</div>
+      </div>
+    `);
+
+    $(".chat-input__text").val("");
+
+    setTimeout(function () {
+      let answer = botAnswer(msg);
+
+      $(".chat-logs").append(`
+        <div class="chat-msg bot">
+          <span class="msg-avatar">
+            <img class="chat-box-overlay_robot" src="../images/icon33.png">
+          </span>
+          <div class="cm-msg-text">${answer}</div>
+        </div>
+      `);
+
+      $(".chat-logs").scrollTop($(".chat-logs")[0].scrollHeight);
+    }, 500);
+  });
+
+});
+
 /********************************************* FAQ page ***********************************/ 
 
 /* باکس سوالات متداول که با کلیک روی هر سوال پاسخ ان باز شود */
@@ -33,16 +113,6 @@ $(document).ready(function(){
   });
 }); 
 
-
-
-/********************************************* search box *********************************************/
-//با کلیک روی دکمه سرچ، سرچ باکس باز شود
-const searchBtn = document.querySelector(".search-btn");
-const searchBox = document.querySelector("input[type='search']");
-
-searchBtn.addEventListener("click", function() {
-  searchBox.focus();
-});
 
 
 /*************************************** slider in index page ********************************************/
