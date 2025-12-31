@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جاذبه ها - گردشگر من</title>
+    <title >درباره ما  - گردشگر من</title>
     <link rel="icon" href="../images/icon33.png" type="image/ico"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
+</head>
+
     <style>
         /* استایل‌های اصلاح شده */
         
@@ -210,14 +212,6 @@
             margin-bottom: 10px;
         }
         
-        /* استایل فوتر */
-        footer {
-            margin-top: 80px !important;
-            padding-top: 40px;
-            background: #2c3e50;
-            color: white;
-        }
-        
         /* برای صفحه‌بندی (اگر نیاز شد) */
         .pagination {
             justify-content: center;
@@ -239,45 +233,43 @@
     </style>
 </head>
 
-<body class="rtl">
-    <!--------------------------- menu ------------------------------->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand">
-                <img src="../images/icon33.png" alt="گردشگر من" width="80" height="70">
-            </a>
-            <a class="navbar-brand">گردشگر من</a>
-            <span style="padding-left: 5px;"></span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html">صفحه اصلی</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about-us.html">درباره ما</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tours.php">تورها</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="jazebe.php">جاذبه ها</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="article.html">مقالات</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">تماس با ما</a>
-                    </li>
-                </ul>
-                <span style="padding-left: 200px;"></span>
-                
-                    </div>
-                </form>
-            </div>
+<!--------------------------- menu ------------------------------->
+<body class="rtl" >
+  <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid">
+        <a  class="navbar-brand">
+          <img src="../images/icon33.png" alt="گردشگر من" width="80" height="70">
+        </a>
+        <a class="navbar-brand" >  گردشگر من </a>
+        <span style="padding-left: 5px;"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item ">
+              <a class="nav-link "  href="../index.html">صفحه اصلی</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/about-us.html">درباره ما</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link "  href="../pages/tours.php">تورها </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/jazebe.php">  جاذبه ها</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/article.html"> مقالات </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/contact.html"> تماس با ما</a>
+            </li>
+          </ul>
+          <span style="padding-left: 200px;"></span>
+          
         </div>
+      </div>
     </nav>
 
     <!-- محتوای اصلی صفحه جاذبه‌ها -->
@@ -464,45 +456,42 @@
 </div>
 
     <!----------------------------------footer--------------------------------->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <ul class="list-inline">
-                        <img src="../images/socialmedia.png" height="200px" width="200px">
-                        <p class="follow-us">ما را در شبکه های اجتماعی دنبال کنید</p>
-                        <hr class="follow-us-line">
-                        <li class="list-inline-item"><a class="social-icon"><i class="fab fa-whatsapp fa-lg"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon"><i class="fab fa-telegram fa-lg"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon"><i class="fab fa-instagram fa-lg"></i></a></li>
-                        <li class="nav-item">
-                    <a class="nav-link" href="pages/contact.html"> تماس با ما</a>
-                  </li>
-                        <li class="list-inline-item"><a class="social-icon email-icon"><i class="far fa-envelope fa-lg"></i></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <h5>خدمات مشتریان</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="FAQ.html">سوالات متداول</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <h5>لینک‌های مهم</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="../index.html#services-section">خدمات ما</a></li>
-                        <li><a href="about-us.html">درباره ما</a></li>
-                        <li><a href="contact.html">تماس با ما</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-md-12 text-center">
-                    <p>&copy;1404، تمامی حقوق برای گردشگرمن محفوظ می باشد.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="list-inline">
+          <img src="../images/socialmedia.png" height="200px" width="200px">
+          <p class="follow-us"> .ما را در شبکه های اجتماعی دنبال کنید</p>
+          <hr class="follow-us-line">
+          <li class="list-inline-item"><a  class="social-icon"><i class="fab  fa-whatsapp fa-lg"></i></a></li>
+          <li class="list-inline-item"><a  class="social-icon"><i class="fab  fa-telegram fa-lg"></i></a></li>
+          <li class="list-inline-item"><a  class="social-icon"><i class="fab fa-instagram fa-lg"></i></a></li>
+          <li class="list-inline-item"><a  class="social-icon email-icon"><i class="far fa-envelope fa-lg"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-3 ">
+        <h5>  خدمات مشتریان</h5>
+        <ul class="list-unstyled">
+        <li><a href="../pages/FAQ.html"> سوالات متداول</a></li>
+      </ul>
+      </div>
+      <div class="col-md-3 mb-3 ">
+        <h5 >لینک‌های مهم</h5>
+        <ul class="list-unstyled">
+          <li><a href="../index.html#services-section">خدمات ما </a></li>
+          <li><a href="../pages/about-us.html"> درباره ما </a></li>
+          <li><a href="../pages/contact.html"> تماس با ما </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-12 text-center">
+        <p ><span dir="auto">&copy;1404،تمامی حقوق برای گردشگرمن محفوظ می باشد. </p></span>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <!--------------------------------back to top page button------------------------>
     <a class="btn btn-primary btn-lg back-to-top" role="button">
