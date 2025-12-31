@@ -5,8 +5,8 @@ $(document).ready(function () {
   $("#chat-circle").click(function () {
     $("#chat-circle").hide();
     $(".chat-box").show();
-    $(".chat-box-welcome__header").show(); //  welcome
-    $("#chat-box__wraper").hide();          //  هنوز نرو تو چت
+    $(".chat-box-welcome__header").show(); // welcome
+    $("#chat-box__wraper").hide();         // هنوز نرو تو چت
   });
 
   // کلیک روی welcome یا input → رفتن داخل چت
@@ -23,15 +23,30 @@ $(document).ready(function () {
     $("#chat-box__wraper").hide();
   });
 
+  // مسیر تصویر ربات بر اساس صفحه
+  function getRobotImgPath() {
+    if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
+      return "images/icon33.png"; // صفحه اصلی
+    } else {
+      return "../images/icon33.png"; // بقیه صفحات
+    }
+  }
+
   // منطق پاسخ ربات
   function botAnswer(text) {
     text = text.toLowerCase();
 
-    if (text.includes("سلام"))
+    if (text.includes("سلام") || text.includes("hi") || text.includes("hello"))
       return "سلام 👋 به گردشگرمن خوش اومدی. آماده‌ای برای انتخاب تور؟";
 
+    if (text.includes("مرسی") || text.includes("ممنون") || text.includes("تشکر") || text.includes("سپاس"))
+      return "خواهش می‌کنم 😊 خوشحال میشم کمکت کنم. سوال دیگه‌ای داری؟";
+
+    if (text.includes("خداحافظ") || text.includes("فعلاً") || text.includes("خدانگهدار") || text.includes("bye"))
+      return "سفر خوبی برات آرزو می‌کنم ✈️🌍 هر وقت خواستی برگرد 😉";
+
     if (text.includes("تور"))
-      return "تورهای داخلی ما شامل شمال، مشهد، کیش، شیراز و اصفهان هستن 🌍";
+      return "برای دیدن و انتخاب تورهای داخلی، لطفاً از منوی 'تورها' استفاده کنید.";
 
     if (text.includes("رزرو"))
       return "برای رزرو تور، کافیه وارد صفحه تور بشی و فرم رزرو رو پر کنی.";
@@ -42,7 +57,7 @@ $(document).ready(function () {
     if (text.includes("پرداخت"))
       return "پرداخت کاملاً آنلاین و امن انجام میشه 💳";
 
-    return "اگر سوالی درباره تورها یا رزرو داری، بپرس 😊";
+    return "اگر سوالی درباره تورها، قیمت یا رزرو داری، بپرس 😊";
   }
 
   // ارسال پیام
@@ -62,11 +77,12 @@ $(document).ready(function () {
 
     setTimeout(function () {
       let answer = botAnswer(msg);
+      let robotImg = getRobotImgPath();
 
       $(".chat-logs").append(`
         <div class="chat-msg bot">
           <span class="msg-avatar">
-            <img class="chat-box-overlay_robot" src="../images/icon33.png">
+            <img class="chat-box-overlay_robot" src="${robotImg}">
           </span>
           <div class="cm-msg-text">${answer}</div>
         </div>

@@ -1200,17 +1200,36 @@ font-family: "b nazanin";
   top: 5px;
 }
 
-.cm-msg-text {
+/* پیام‌های ربات */
+.chat-msg.bot .cm-msg-text {
+  float: right;           
+  text-align: right;      
+  direction: rtl;         
   background: white;
-  padding: 10px 15px 10px 15px;
+  padding: 10px 15px;
   color: #666;
   max-width: 75%;
-  float: right;
   margin-left: 10px;
-  position: relative;
   margin-bottom: 20px;
   border-radius: 3px;
+  overflow-wrap: break-word;
 }
+
+/* پیام‌های کاربر */
+.chat-msg.self .cm-msg-text {
+  float: left;
+  text-align: left;
+  direction: ltr;
+  background: #efefef;
+  padding: 10px 15px;
+  color: #666;
+  max-width: 75%;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  overflow-wrap: break-word;
+}
+
 
 .options-btn {
   background: white;
@@ -1255,4 +1274,268 @@ font-family: "b nazanin";
   opacity: 1;
   transform: scale(1);
 }
+}
+
+
+
+/* فاصله از منوی ثابت */
+.jazebe-container {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  min-height: calc(100vh - 300px); /* حداقل ارتفاع برای جلوگیری از همپوشانی با فوتر */
+}
+
+/* هدر صفحه */
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* استایل کارت‌ها */
+/* کارت‌ها راست‌چین */
+.jazebe-card {
+  direction: rtl;       /* راست‌چین کردن کل کارت */
+  text-align: right;    /* متن‌ها راست‌چین */
+}
+
+/* تیتر کارت */
+.jazebe-card .jazebe-title {
+  text-align: right;    /* فقط تیتر */
+  direction: rtl;
+}
+
+/* توضیحات کارت */
+.jazebe-card .jazebe-description {
+ text-align: right;
+ direction: rtl;
+}
+
+/* دکمه مشاهده بیشتر */
+.jazebe-card .read-more {
+ text-align: right;
+ display: block;
+}
+
+
+/* کانتینر تصویر */
+.jazebe-img-container {
+  height: 220px;
+  overflow: hidden;
+  flex-shrink: 0; /* جلوگیری از تغییر سایز */
+}
+
+.jazebe-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.jazebe-card:hover .jazebe-img {
+  transform: scale(1.05);
+}
+
+/* حالت بدون تصویر */
+.no-image {
+  height: 220px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+}
+
+.no-image i {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  opacity: 0.7;
+}
+
+/* بدنه کارت */
+.jazebe-body {
+  padding: 20px;
+  flex-grow: 1; /* پر کردن فضای باقیمانده */
+  display: flex;
+  flex-direction: column;
+  text-align: justify; 
+  direction: rtl; 
+}
+
+#jazebe-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* راست‌چین کردن کارت‌ها */
+}
+
+
+#modalDescriptionContent {
+ text-align: justify;
+ direction: rtl;
+}
+
+.jazebe-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  height: 60px; /* ارتفاع ثابت برای عنوان */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* حداکثر 2 خط */
+  -webkit-box-orient: vertical;
+}
+
+.jazebe-description {
+  color: #555;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  flex-grow: 1; /* پر کردن فضای باقیمانده */
+  overflow: hidden;
+  position: relative;
+}
+
+/* برای محدود کردن متن با نقطه چین */
+.jazebe-description.truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* حداکثر 4 خط */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* دکمه مشاهده بیشتر */
+.read-more {
+  color: #4b6cb7;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.read-more:hover {
+  color: #182848;
+  text-decoration: underline;
+}
+
+/* تیتر مودال راست‌چین و justify */
+#descriptionModalLabel {
+ direction: rtl;
+ text-align: right;
+}
+
+/* بدنه متن مودال */
+#modalDescriptionContent {
+ direction: rtl;
+ text-align: justify;
+}
+
+/* راست‌چین کردن دکمه بستن مودال */
+#descriptionModal .modal-header {
+ flex-direction: row-reverse; /* عوض کردن جهت فلکس برای راست به چپ */
+}
+
+#descriptionModal .btn-close {
+ margin-left: 0; /* حذف فاصله سمت چپ */
+ margin-right: auto; /* دکمه به سمت راست بیاد */
+}
+
+/* استایل برای وقتی جاذبه‌ای وجود ندارد */
+.no-jazebe {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin: 40px 0;
+  border: 2px dashed #dee2e6;
+}
+
+.no-jazebe i {
+  font-size: 4rem;
+  color: #adb5bd;
+  margin-bottom: 20px;
+}
+
+.no-jazebe h3 {
+  color: #495057;
+  margin-bottom: 15px;
+}
+
+.no-jazebe p {
+  color: #6c757d;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* استایل برای جستجو */
+.search-box {
+  max-width: 600px;
+  margin: 30px auto 40px;
+}
+
+.search-box .input-group {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.search-box .form-control {
+  
+  text-align: right; /* راست‌چین کردن متن */
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+}
+
+.search-box .btn {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+  border: none;
+  border-radius: 0 30px 30px 0;
+}
+
+/* فاصله بین ردیف‌ها */
+.row {
+  margin-bottom: 10px;
+}
+
+/* برای صفحه‌بندی (اگر نیاز شد) */
+.pagination {
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.pagination .page-link {
+  color: #4b6cb7;
+  border: 1px solid #dee2e6;
+  margin: 0 3px;
+  border-radius: 5px;
+}
+
+.pagination .page-item.active .page-link {
+  background: #4b6cb7;
+  border-color: #4b6cb7;
+  color: white;
 }
