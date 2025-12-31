@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title >درباره ما  - گردشگر من</title>
+    <title > جاذبه ها  - گردشگر من</title>
     <link rel="icon" href="../images/icon33.png" type="image/ico"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap.rtl.min.css">
@@ -322,18 +322,23 @@
                 
                 // اگر هیچ نتیجه‌ای یافت نشد
                 if ($('.jazebe-card:visible').length === 0) {
-                    $('#jazebe-list').append(`
-                        <div class="col-12">
-                            <div class="alert alert-warning text-center" style="direction: rtl; text-align: right;">
-                                <i class="fas fa-search"></i>
-                                هیچ جاذبه‌ای با عبارت "${$('#search-input').val()}" یافت نشد.
-                            </div>
-                        </div>
-                    `);
-                }
+                 $('#jazebe-list').append(`
+                  <div class="col-12 search-alert">
+                <div class="alert alert-warning text-center" style="direction: rtl; text-align: right;">
+                  <i class="fas fa-search"></i>
+                  هیچ جاذبه‌ای با عبارت "${$('#search-input').val()}" یافت نشد.
+                <button type="button" class="btn btn-sm btn-outline-warning ms-3" 
+                    onclick="$('.jazebe-card').parent().show(); $('.search-alert').remove();">
+                    نمایش همه جاذبه‌ها
+                </button>
+             </div>
+         </div>
+            `);}
+
             } else {
                 $('.jazebe-card').parent().show();
-                $('.alert-warning').remove();
+                $('.search-alter').remove();
+
             }
         }
         

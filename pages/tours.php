@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title >درباره ما  - گردشگر من</title>
+    <title >تورها  - گردشگر من</title>
     <link rel="icon" href="../images/icon33.png" type="image/ico"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap.rtl.min.css">
@@ -42,6 +42,19 @@
             margin: 0 auto;
             line-height: 1.6;
         }
+
+        /* راست‌چین کردن تمام محتوا در مودال تور */
+        #tourModal .modal-content {
+           direction: rtl;
+           text-align: right;
+        }
+        #tourModal .modal-body p,
+        #tourModal .modal-body h4,
+        #tourModal .modal-body .price-tag {
+           direction: rtl;
+           text-align: right;
+        }
+
         
         /* استایل برای جستجو */
         .search-box {
@@ -81,6 +94,12 @@
             flex-direction: column;
         }
         
+        /* راست‌چین کردن عنوان و توضیح کارت تور */
+        .tour-card .tour-title,
+        .tour-card .tour-description {
+             direction: rtl;
+             text-align: right;
+        }
         .tour-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(0,0,0,0.15);
@@ -243,8 +262,7 @@
             color: #495057;
             margin-bottom: 5px;
             display: block;
-        }
-        
+        }      
     </style>
 </head>
 
@@ -298,7 +316,7 @@
         <!-- بخش جستجو -->
         <div class="search-box">
             <div class="input-group">
-                <input type="text" class="form-control" id="search-input" placeholder="جستجوی تورها...">
+                <input type="text" class="form-control" id="search-input" placeholder="...جستجوی تورها">
                 <button class="btn btn-primary" id="search-btn">
                     <i class="fas fa-search"></i>
                 </button>
@@ -550,7 +568,7 @@
                     
                     $('#tours-list').prepend(`
                         <div class="col-12 search-alert">
-                            <div class="alert alert-warning text-center">
+                            <div class="alert alert-warning text-center" style="direction: rtl; text-align: right;">
                                 <i class="fas fa-search"></i>
                                 هیچ توری با عبارت "${$('#search-input').val()}" یافت نشد.
                                 <button type="button" class="btn btn-sm btn-outline-warning ms-3" onclick="$('.tour-item').show(); $('.search-alert').remove();">
