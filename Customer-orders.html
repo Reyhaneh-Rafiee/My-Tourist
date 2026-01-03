@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>customer orders</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+ <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .table th {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+        
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .no-orders {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+            font-size: 18px;
+        }
+        
+        .search-box {
+            margin: 20px 0;
+        }
+        
+        .action-buttons .btn {
+            margin: 2px;
+            font-size: 12px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // همه td های ستون قیمت (ستون 7)
+    const priceCells = document.querySelectorAll("table tbody tr td:nth-child(7)");
+
+    priceCells.forEach(cell => {
+        let value = cell.innerText.trim();
+
+        // فقط اگر عدد بود
+        if (!isNaN(value) && value !== "") {
+            let formatted = Number(value).toLocaleString("fa-IR");
+            cell.innerText = formatted + " تومان";
+        }
+    });
+});
+</script>
+
+<body>
+<nav class="nav top-bar">
+    <h2 class="float-left">سفارش ها</h2>
+</nav>
+
+        </div>
+<div class="card mb-3">
+    <div class="card-header">
+سفارشات مشتری
+    </div>
+     <form action="orders.php" method="get" class="p-3">
+                    <div class="input-group">
+                        <input type="text" placeholder="جستجو در سفارشات..." name="search" 
+                               class="form-control text-end" 
+                               value="">
+                        <button class="btn btn-primary" type="submit">جستجو</button>
+                    </div>
+                </form>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table float-right" style="direction: rtl">
+                <thead>
+                <tr>
+                    <th>ردیف</th>
+                     <th>شماره سفارش</th>
+                     <th>به نام</th>
+                    <th> نام تور</th>
+                    <th>تاریخ</th>
+                    <th>تعداد</th>
+                    <th>قیمت</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>علی رضایی</td>
+                    <td>شیراز</td>
+                    <td>1404/4/5</td>
+                    <td>5</td>
+                    <td>2500000</td>
+
+                
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
