@@ -25,7 +25,7 @@ $(document).ready(function () {
 
   // مسیر تصویر ربات بر اساس صفحه
   function getRobotImgPath() {
-    if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
+    if (window.location.pathname.endsWith("index.php") || window.location.pathname === "/") {
       return "images/icon33.png"; // صفحه اصلی
     } else {
       return "../images/icon33.png"; // بقیه صفحات
@@ -53,6 +53,9 @@ $(document).ready(function () {
 
     if (text.includes("قیمت"))
       return "قیمت هر تور داخل صفحه خودش درج شده 💰";
+
+if (text.includes("جاذبه"))
+      return " برای آشنایی با جاذبه های بیشتر به همین صفحه مراجعه کنید :)";
 
     if (text.includes("پرداخت"))
       return "پرداخت کاملاً آنلاین و امن انجام میشه 💳";
