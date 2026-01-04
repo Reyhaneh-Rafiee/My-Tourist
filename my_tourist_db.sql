@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 28, 2025 at 12:14 PM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Host: 127.0.0.1
+-- Generation Time: Jan 04, 2026 at 07:52 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,13 +27,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -49,15 +46,13 @@ INSERT INTO `admin` (`id`, `name`, `password`) VALUES
 -- Table structure for table `jazebe`
 --
 
-DROP TABLE IF EXISTS `jazebe`;
-CREATE TABLE IF NOT EXISTS `jazebe` (
-  `j_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `jazebe` (
+  `j_id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `image_path` varchar(255) DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`j_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jazebe`
@@ -65,7 +60,6 @@ CREATE TABLE IF NOT EXISTS `jazebe` (
 
 INSERT INTO `jazebe` (`j_id`, `title`, `description`, `image_path`, `updated_at`) VALUES
 (2, 'چغازنبیل', 'چغازنبیل از جاهای دیدنی ایران است که در جنوب غرب ایران، نزدیک شهر تاریخی شوش، در استان خوزستان قرار دارد. همانطور که همه ما می‌دانیم یکی از قدیمی‌ترین شهرهای دنیا شوش است.\r\nاین بنا نمونه‌ای فوق‌العاده از معماری و سکونتگاه باستانی انسان است و فرهنگ و سرگذشت ایلامیان را نشان می‌دهد، به همین دلیل یکی از مهم‌ترین آثار ایران باستان محسوب می‌شود. زیگورات چغازنبیل در سال ۱۳۵۸ خورشیدی به‌عنوان اولین آثار تاریخی برجسته ایران زمین، همراه با نقش جهان اصفهان و تخت جمشید در فهرست جهانی یونسکو به ثبت رسید.‌', 'uploads/jazebe/693e9ab6ed4b2_1765710518.jpg', '2025-12-26 20:36:24'),
-(3, 'کاخ گلستان', 'کاخ گلستان یکی از قدیمی‌ترین و مهم‌ترین مجموعه‌های تاریخی ایران است که در قلب تهران و نزدیک میدان ارگ قرار دارد. این کاخ مربوط به دوره قاجار است و مجموعه‌ای از کاخ‌ها، تالارها، موزه‌ها و باغ‌های سلطنتی را در بر می‌گیرد.\r\n\r\nکاخ گلستان در ابتدا به عنوان محل اقامت شاهان قاجار ساخته شد و به مرور زمان با اضافه شدن ساختمان‌ها و تالارهای جدید، به یکی از بزرگ‌ترین و باشکوه‌ترین مجموعه‌های معماری ایران تبدیل شد. معماری کاخ ترکیبی از سبک سنتی ایرانی و تزئینات قجری است و بخش‌هایی از آن شامل تالارهای آیینه‌کاری شده، نقاشی‌ها، گچ‌بری‌های ظریف و شیشه‌کاری‌های زیبا می‌شود.\r\n\r\nاز معروف‌ترین بخش‌های کاخ می‌توان به تالار سلام، تالار عاج، موزه مردم‌شناسی و حوضخانه اشاره کرد. این تالارها نه تنها جلوه‌ای از هنر و فرهنگ ایرانی را نشان می‌دهند، بلکه تاریخ رسمی و مراسم‌های مهم قاجار را نیز بازگو می‌کنند.\r\n\r\nکاخ گلستان در سال ۲۰۱۳ به فهرست میراث جهانی یونسکو اضافه شد و امروزه یکی از مهم‌ترین مقصدهای گردشگری تهران است. بازدید از این مجموعه فرصتی است برای آشنایی با زندگی سلطنتی، هنر و معماری دوره قاجار و تجربه قدم زدن در میان باغ‌ها و تالارهای تاریخی که هر گوشه‌اش داستانی برای گفتن دارد.', 'images/jazebe/jazebe_1766836175_694fc7cf693e4.jpg', '2025-12-27 15:19:35'),
 (5, 'مسجد جامع', 'مسجد جامع یزد یکی از نمونه‌های برجسته معماری اسلامی در ایران است که قدمت آن به قرن‌های اولیه اسلام در ایران بازمی‌گردد و طی دوران‌های مختلف بازسازی و توسعه یافته است. این مسجد در وسط بافت تاریخی شهر یزد قرار دارد و با مناره‌های بلند و کاشی‌کاری‌های زیبا خود، یکی از شاخص‌ترین آثار تاریخی شهر به شمار می‌رود.\r\nمعماری مسجد جامع یزد نمونه‌ای از تلاقی هنر و مهندسی ایرانی-اسلامی است؛ گنبد باشکوه آن، سردر کاشی‌کاری شده و صحن وسیع و دلنشین، جلوه‌ای بی‌نظیر ایجاد کرده‌اند. مناره‌های بلند مسجد نه تنها به عنوان نماد شهر یزد شناخته می‌شوند، بلکه یکی از بلندترین مناره‌های ایران نیز هستند.\r\nدر داخل مسجد، می‌توان شبستان‌ها، ایوان‌های تزئین‌شده و محراب‌های زیبای کاشی‌کاری شده را دید که نمونه‌ای از هنر استادکاران ایرانی است. مسجد جامع یزد علاوه بر ارزش معماری، مرکز فعالیت‌های مذهبی و فرهنگی شهر نیز بوده و همچنان محلی برای نماز، تدریس و تجمع مردم است.\r\nبازدید از مسجد جامع یزد فرصتی است برای تماشای معماری اصیل ایرانی، کاشی‌کاری‌های ظریف و فضای معنوی یک مسجد تاریخی که هزاران سال فرهنگ و هنر اسلامی را در خود جای داده است.', 'images/jazebe/jazebe_1766836328_694fc86876ea1.webp', '2025-12-27 15:22:08'),
 (6, 'تخت جمشید', 'تخت جمشید، یکی از مهم‌ترین و با شکوه‌ترین آثار تاریخی ایران و جهان است که نماد قدرت و شکوه امپراتوری هخامنشیان به شمار می‌رود. این مجموعه تاریخی در حدود ۲۵۰۰ سال پیش توسط داریوش بزرگ آغاز شد و بعدها به دست خشایارشا و اردشیر توسعه یافت.\r\n\r\nتخت جمشید به عنوان مرکز سیاسی، فرهنگی و مراسمی هخامنشیان عمل می‌کرد و محل برگزاری جشن‌ها و آیین‌های مهم مانند نوروز بود. این بنای عظیم شامل کاخ‌ها، ایوان‌ها، پلکان‌های سنگی و تالارهای ستون‌دار است که با سنگ‌تراشی‌های دقیق و نقش‌های برجسته، داستان‌های تاریخی، مذهبی و زندگی روزمره مردم آن زمان را بازگو می‌کنند.\r\n\r\nاز مهم‌ترین بخش‌های تخت جمشید می‌توان به ایوان کاخ آپادانا، تالار صد ستون و دروازه ملل اشاره کرد. دروازه ملل با نقش مردمانی از کشورهای مختلف تحت سلطه هخامنشیان، نمادی از گستره امپراتوری ایران در آن دوران است.\r\n\r\nتخت جمشید نه تنها یک شاهکار معماری و هنری باستانی است، بلکه نمادی از فرهنگ، قدرت و تاریخ ایران محسوب می‌شود و در سال ۱۹۷۹ به فهرست میراث جهانی یونسکو اضافه شد. بازدید از این مجموعه فرصتی است برای تماشای عظمت و هنر هخامنشیان و درک عمق تاریخ ایران باستان.', 'images/jazebe/jazebe_1766837112_694fcb78f0e70.jpg', '2025-12-27 15:35:12'),
 (7, 'کاخ عالی‌قاپو', 'کاخ عالی‌قاپو یکی از مهم‌ترین و شاخص‌ترین آثار دوره صفوی در اصفهان است که در ضلع غربی میدان نقش جهان قرار دارد. این کاخ در زمان شاه عباس اول ساخته شد و به عنوان دروازه ورود به دربار صفوی و محل پذیرایی از سفیران خارجی مورد استفاده قرار می‌گرفت.\r\nعالی‌قاپو ساختمانی شش طبقه با معماری دقیق و هنرمندانه است. از ویژگی‌های برجسته آن می‌توان به ایوان بزرگ با ستون‌های بلند، تزئینات گچ‌بری و نقاشی‌های دیواری اشاره کرد. طبقه ششم، معروف به تالار موسیقی، با طاق‌ها و تزئینات منحصربه‌فردش، دارای آکوستیک فوق‌العاده‌ای است که صدای موسیقی را به شکل بی‌نظیری منعکس می‌کند.\r\nاین کاخ نه تنها جلوه‌ای از قدرت و شکوه صفویان است، بلکه نمونه‌ای بی‌نظیر از هنر معماری ایرانی نیز به شمار می‌رود. عالی‌قاپو همراه با دیگر بناهای میدان نقش جهان، مانند مسجد شیخ لطف‌الله و مسجد جامع اصفهان، یک مجموعه تاریخی و فرهنگی منحصربه‌فرد ایجاد کرده است که سالانه گردشگران بسیاری را جذب می‌کند.\r\nبازدید از کاخ عالی‌قاپو فرصتی است برای تماشای هنر معماری صفوی، نقاشی‌های دیواری و طراحی دقیق داخلی و خارجی کاخ و تجربه حس زندگی و شکوه دربار صفوی در قلب اصفهان.', 'images/jazebe/jazebe_1766837259_694fcc0b9939b.jpg', '2025-12-27 15:37:39'),
@@ -80,9 +74,8 @@ INSERT INTO `jazebe` (`j_id`, `title`, `description`, `image_path`, `updated_at`
 -- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE IF NOT EXISTS `orders` (
-  `o_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `orders` (
+  `o_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `phone` varchar(11) NOT NULL,
@@ -90,26 +83,32 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `code` varchar(20) NOT NULL,
   `t_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `travelers` int(11) DEFAULT '1',
-  `notes` text,
+  `travelers` int(11) DEFAULT 1,
+  `notes` text DEFAULT NULL,
+  `travel_date` varchar(10) DEFAULT NULL,
   `total_price` int(11) DEFAULT NULL,
   `tracking_code` varchar(50) DEFAULT NULL,
   `status` enum('pending','paid','cancelled') DEFAULT 'pending',
   `payment_date` timestamp NULL DEFAULT NULL,
   `payment_method` varchar(50) DEFAULT NULL,
   `card_number_last4` varchar(4) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`o_id`),
-  UNIQUE KEY `tracking_code` (`tracking_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`o_id`, `name`, `email`, `phone`, `address`, `code`, `t_id`, `user_id`, `travelers`, `notes`, `total_price`, `tracking_code`, `status`, `payment_date`, `payment_method`, `card_number_last4`, `created_at`) VALUES
-(1, 'ریحانه رفیعی', 'reyhanerafee@gmail.com', '09056821241', 'تهران-مینی‌سیتی', '0123456789', 6, 1, 2, '0', 2000, 'TOUR-1766750828-1035', 'paid', '2025-12-26 12:09:19', 'card', '7890', '2025-12-26 12:07:08'),
-(2, 'هانیه موسی زاده', 'hmz@gmail.com', '09126541870', 'تهران-اقدسیه', '1596324870', 6, 4, 5, '0', 750000, 'TOUR-1766774192-2368', 'paid', '2025-12-26 18:38:01', 'online', '7890', '2025-12-26 18:36:32');
+INSERT INTO `orders` (`o_id`, `name`, `email`, `phone`, `address`, `code`, `t_id`, `user_id`, `travelers`, `notes`, `travel_date`, `total_price`, `tracking_code`, `status`, `payment_date`, `payment_method`, `card_number_last4`, `created_at`) VALUES
+(1, 'ریحانه رفیعی', 'reyhanerafee@gmail.com', '09056821241', 'تهران-مینی‌سیتی', '0123456789', 6, 1, 2, '0', NULL, 2000, 'TOUR-1766750828-1035', 'paid', '2025-12-26 12:09:19', 'card', '7890', '2025-12-26 12:07:08'),
+(2, 'هانیه موسی زاده', 'hmz@gmail.com', '09126541870', 'تهران-اقدسیه', '1596324870', 6, 4, 5, '0', NULL, 750000, 'TOUR-1766774192-2368', 'paid', '2025-12-26 18:38:01', 'online', '7890', '2025-12-26 18:36:32'),
+(3, 'ملیکا مهرابیان', 'melika.m@gmail.com', '09302589631', 'تهران-پاسداران', '0449513687', 13, 3, 4, '0', NULL, 800000, 'TOUR-1766922172-1958', 'paid', '2025-12-28 11:43:28', 'card', '7890', '2025-12-28 11:42:52'),
+(4, 'حانیه وفایی', 'honey81@gmail.com', '09338451263', 'تهران-رباط‌کریم', '0123456789', 9, 2, 3, '0', NULL, 540000, 'TOUR-1767520505-1459', 'paid', '2026-01-04 09:55:32', 'card', '7890', '2026-01-04 09:55:06'),
+(5, 'علی احمدی', 'reyhanerafee@gmail.com', '09102589641', 'پیروزی', '0123456789', 10, 1, 4, '0', NULL, 760000, 'TOUR-1767521388-1336', 'paid', '2026-01-04 10:09:55', 'card', '7890', '2026-01-04 10:09:48'),
+(16, 'وفائی', 'honey81@gmail.com', '09056821241', 'لواسان', '0123456789', 7, 2, 3, '', '0000-00-00', 540000, NULL, 'paid', '2026-01-04 16:43:22', 'card', '7890', '2026-01-04 16:43:05'),
+(17, 'هانیه موسی زاده', 'hmz@gmail.com', '09102589641', 'مشیریه', '0123456789', 12, 4, 5, 'بتول نیاد\r\nمرسی :)', '0000-00-00', 1500000, NULL, 'paid', '2026-01-04 17:05:26', 'card', '7890', '2026-01-04 17:05:21'),
+(18, 'میلاد موسی زاده', 'hmz@gmail.com', '09126541870', 'لواسان', '0123456789', 10, 4, 2, 'اوکیه', '۱۴۰۵-۰۲-۲۵', 380000, NULL, 'paid', '2026-01-04 17:14:44', 'card', '7890', '2026-01-04 17:14:39'),
+(19, 'ملیکا مهرابیان', 'melika.m@gmail.com', '09048425613', 'تهرانپارس', '0112584718', 6, 3, 4, 'اوپارک هم میبرین ؟', '۱۴۰۴-۱۲-۲۹', 600000, NULL, 'paid', '2026-01-04 17:24:30', 'card', '7890', '2026-01-04 17:24:25');
 
 -- --------------------------------------------------------
 
@@ -117,16 +116,14 @@ INSERT INTO `orders` (`o_id`, `name`, `email`, `phone`, `address`, `code`, `t_id
 -- Table structure for table `tours`
 --
 
-DROP TABLE IF EXISTS `tours`;
-CREATE TABLE IF NOT EXISTS `tours` (
-  `t_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tours` (
+  `t_id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `image_path` varchar(255) DEFAULT NULL,
   `price` varchar(100) NOT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`t_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tours`
@@ -149,15 +146,13 @@ INSERT INTO `tours` (`t_id`, `title`, `description`, `image_path`, `price`, `upd
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `repeat-password` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `repeat-password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -168,6 +163,75 @@ INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `repeat-password`) V
 (2, 'Hanieh Vafaee', 'honey81@gmail.com', 'be2fc6855075311d91764a4713259f3f', 'be2fc6855075311d91764a4713259f3f'),
 (3, 'Melika Mehrabian', 'melika.m@gmail.com', '725e84485b58783414112ea8935c45ad', '725e84485b58783414112ea8935c45ad'),
 (4, 'Hanieh Musa', 'hmz@gmail.com', '0b6bdf1aee42ae723aea9ce3ac824e1a', '0b6bdf1aee42ae723aea9ce3ac824e1a');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jazebe`
+--
+ALTER TABLE `jazebe`
+  ADD PRIMARY KEY (`j_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`o_id`),
+  ADD UNIQUE KEY `tracking_code` (`tracking_code`);
+
+--
+-- Indexes for table `tours`
+--
+ALTER TABLE `tours`
+  ADD PRIMARY KEY (`t_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `jazebe`
+--
+ALTER TABLE `jazebe`
+  MODIFY `j_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `tours`
+--
+ALTER TABLE `tours`
+  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
