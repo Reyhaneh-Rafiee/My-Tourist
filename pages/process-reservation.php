@@ -1,55 +1,70 @@
 <?php
-// process-reservation.php در پوشه pages/
+ob_start();
+session_start();
 require_once 'config.php';
 
-// بررسی ورود کاربر
 if (!isLoggedIn()) {
-    header("Location: login-form.html");
+    header("Location: register-form.html?form=login-user");
     exit();
 }
 
-// بررسی داده‌های POST
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user_id = getCurrentUser();
-    $tour_id = intval($_POST['tour_id']);
-    $name = mysqli_real_escape_string($connect, $_POST['name']);
-    $email = mysqli_real_escape_string($connect, $_POST['email']);
-    $phone = mysqli_real_escape_string($connect, $_POST['phone']);
-    $address = mysqli_real_escape_string($connect, $_POST['address']);
-    $code = mysqli_real_escape_string($connect, $_POST['code']);
-    $travelers = intval($_POST['travelers']);
-    $notes = mysqli_real_escape_string($connect, $_POST['notes'] ?? '');
-    $total_price = intval($_POST['tour_price']) * $travelers;
-    
-    // تولید کد رهگیری منحصر به فرد
-    $tracking_code = 'TOUR-' . time() . '-' . rand(1000, 9999);
-    
-    // ذخیره در دیتابیس
-    $sql = "INSERT INTO orders (name, email, phone, address, code, t_id, travelers, notes, total_price, tracking_code, user_id, status) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')";
-    
-    $stmt = mysqli_prepare($connect, $sql);
-    
-    if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "sssssisisss", $name, $email, $phone, $address, $code, $tour_id, $travelers, $notes, $total_price, $tracking_code, $user_id);
-        
-        if (mysqli_stmt_execute($stmt)) {
-            $order_id = mysqli_insert_id($connect);
-            mysqli_stmt_close($stmt);
-            
-            // انتقال به صفحه پرداخت
-            header("Location: payment.php?order_id=" . $order_id);
-            exit();
-        } else {
-            // خطا در اجرا
-            echo "خطا در اجرای کوئری: " . mysqli_error($connect);
-        }
-    } else {
-        // خطا در آماده‌سازی
-        echo "خطا در آماده‌سازی کوئری: " . mysqli_error($connect);
-    }
-} else {
+// بررسی ارسال فرم
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: tours.php");
     exit();
 }
-?>
+
+// دریافت داده‌ها
+$tour_id    = intval($_POST['tour_id']);
+$user_id    = getCurrentUser();
+
+$name       = trim($_POST['name']);
+$phone      = trim($_POST['phone']);
+$email      = trim($_POST['email']);
+$code       = trim($_POST['code']);
+$address    = trim($_POST['address']);
+$travelers  = intval($_POST['travelers']);
+$notes      = trim($_POST['notes'] ?? '');
+$travelDate = !empty($_POST['travel_date_miladi']) ? $_POST['travel_date_miladi'] : null;
+
+// محاسبه مبلغ نهایی
+$price_per_person = intval($_POST['tour_price']);
+$total_price = $price_per_person * $travelers;
+
+// ذخیره سفارش
+$sql = "INSERT INTO orders 
+(user_id, t_id, name, phone, email, code, address, travelers, travel_date, notes, total_price, status, created_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())";
+
+$stmt = $connect->prepare($sql);
+
+$stmt->bind_param(
+    "iisssssisss",
+    $user_id,
+    $tour_id,
+    $name,
+    $phone,
+    $email,
+    $code,
+    $address,
+    $travelers,
+    $travelDate,
+    $notes,
+    $total_price
+);
+
+if (!$stmt->execute()) {
+    die("DB ERROR: " . $stmt->error);
+}
+
+// ذخیره برای پرداخت
+$_SESSION['order_id'] = $stmt->insert_id;
+$_SESSION['total_price'] = $total_price;
+
+// انتقال به پرداخت
+header("Location: payment.php");
+exit();
+
+$stmt->close();
+$connect->close();
+ob_end_flush();

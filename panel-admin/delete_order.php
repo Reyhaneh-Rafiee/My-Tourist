@@ -1,5 +1,5 @@
 <?php
-// delete-order.php در پوشه panel-admin/
+
 // اتصال به دیتابیس
 $servername = "localhost";
 $username = "root";
@@ -24,9 +24,9 @@ if (isset($_GET['id'])) {
     
     if ($stmt->execute()) {
         // هدایت به صفحه سفارشات با پیام موفقیت
-        header("Location: orders.html?msg=سفارش با موفقیت حذف شد");
+        header("Location: orders.php?msg=سفارش با موفقیت حذف شد");
     } else {
-        header("Location: orders.html?msg=خطا در حذف سفارش");
+        header("Location: orders.php?msg=خطا در حذف سفارش");
     }
     
     $stmt->close();

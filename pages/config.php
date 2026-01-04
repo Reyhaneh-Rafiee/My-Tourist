@@ -1,6 +1,10 @@
 <?php
-// config.php در پوشه php/
-session_start();
+// config.php
+
+// جلوگیری از اجرای دوباره session_start
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $connect = mysqli_connect('localhost', 'root', '', 'my_tourist_db');
 

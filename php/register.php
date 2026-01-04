@@ -3,62 +3,37 @@ session_start();
 require('config.php');
 
 $errors = [];
-$success = '';
-$user_data = []; // برای پر کردن مجدد فرم در صورت خطا
+$success = false;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // دریافت مقادیر
-    $fullname = isset($_POST['fullname']) ? mysqli_real_escape_string($connect, trim($_POST['fullname'])) : '';
-    $email = isset($_POST['email']) ? mysqli_real_escape_string($connect, trim($_POST['email'])) : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
-    $repeat_password = isset($_POST['repeat_password']) ? $_POST['repeat_password'] : '';
-    
-    // ذخیره داده‌ها برای پر کردن مجدد فرم
-    $user_data = [
-        'fullname' => $fullname,
-        'email' => $email
-    ];
-    
-    // اعتبارسنجی
-    if (empty($fullname)) {
-        $errors[] = "نام و نام خانوادگی الزامی است";
-    }
-    
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "ایمیل معتبر وارد کنید";
-    }
-    
-    if (empty($password) || strlen($password) < 6) {
-        $errors[] = "رمز عبور باید حداقل 6 کاراکتر باشد";
-    }
-    
-    if ($password !== $repeat_password) {
-        $errors[] = "رمز عبور و تکرار آن یکسان نیستند";
-    }
-    
-    // چک کردن تکراری نبودن ایمیل
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $fullname = mysqli_real_escape_string($connect, trim($_POST['fullname'] ?? ''));
+    $email = mysqli_real_escape_string($connect, trim($_POST['email'] ?? ''));
+    $password = $_POST['password'] ?? '';
+    $repeat_password = $_POST['repeat_password'] ?? '';
+
+    if (empty($fullname)) $errors[] = "نام الزامی است";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "ایمیل معتبر نیست";
+    if (strlen($password) < 6) $errors[] = "رمز عبور حداقل ۶ کاراکتر";
+    if ($password !== $repeat_password) $errors[] = "رمزها یکسان نیستند";
+
     if (empty($errors)) {
-        $check_email = "SELECT id FROM users WHERE email = '$email'";
-        $result = mysqli_query($connect, $check_email);
-        
-        if (mysqli_num_rows($result) > 0) {
-            $errors[] = "این ایمیل قبلا ثبت شده است";
+
+        $check = mysqli_query($connect, "SELECT id FROM users WHERE email='$email'");
+        if (mysqli_num_rows($check) > 0) {
+            $errors[] = "این ایمیل قبلاً ثبت شده است";
         } else {
-            // هش کردن رمز عبور (md5)
-            $hashed_password = md5($password);
-            $hashed_repeat = md5($repeat_password);
-            
-            // درج در دیتابیس
-            $sql = "INSERT INTO users (fullname, email, password, `repeat-password`) 
-                    VALUES ('$fullname', '$email', '$hashed_password', '$hashed_repeat')";
-            
+            $hashed = md5($password);
+
+            $sql = "INSERT INTO users (fullname, email, password) 
+                    VALUES ('$fullname','$email','$hashed')";
+
             if (mysqli_query($connect, $sql)) {
-                $success = "ثبت نام با موفقیت انجام شد!";
-                
-                // 3 ثانیه صبر کن و بعد به صفحه ورود هدایت کن
-                header("refresh:3;url=login-user.php");
+                $success = true;
+                header("Location: login-user.php");
+                exit;
             } else {
-                $errors[] = "خطا در ثبت نام: " . mysqli_error($connect);
+                $errors[] = "خطا در ثبت نام";
             }
         }
     }

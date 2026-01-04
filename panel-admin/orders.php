@@ -51,7 +51,7 @@
         <div class="col-2">
             <div class="list-item">
                 <a href="index.php">پیشخوان</a>
-                <a href="../index.html">مشاهده سایت</a>
+                <a href="../index.php">مشاهده سایت</a>
                 <a href="add-new-tour.html">تور جدید</a>
                 <a href="orders.php">سفارشات تور</a>
                 <a href="add-new-jazebe.html">جاذبه جدید</a>
@@ -141,7 +141,7 @@
                                         echo "<td>" . htmlspecialchars($row['tour_title'] ?? 'ناشناخته') . "</td>";
                                         echo "<td>";
                                         echo "<div class='action-buttons'>";
-                                        echo "<a href='delete-order.php?id=" . $row['o_id'] . "' class='btn btn-danger btn-sm' 
+                                        echo "<a href='delete_order.php?id=" . $row['o_id'] . "' class='btn btn-danger btn-sm' 
                                                onclick='return confirm(\"آیا از حذف این سفارش مطمئن هستید؟\")'>حذف</a>";
                                         echo "</div>";
                                         echo "</td>";

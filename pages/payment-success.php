@@ -131,7 +131,7 @@ $amount = $_GET['amount'] ?? 0;
         </div>
         
         <div class="mt-4">
-            <a href="../index.html" class="btn-success">
+            <a href="../index.php" class="btn-success">
                 <i class="fas fa-home me-2"></i>بازگشت به خانه
             </a>
             <a href="tours.php" class="btn-outline-success">

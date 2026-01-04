@@ -1,3 +1,6 @@
+<?php
+require_once 'pages/config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
 <!--------------------------- menu ------------------------------->
 <body class="rtl index-page" >
         <nav class="navbar navbar-expand-lg fixed-top">
-            <div class="container-fluid">
+             <div class="container-fluid">
               <a  class="navbar-brand">
                 <img src="images/icon33.png" alt="گردشگر من" width="80" height="70">
               </a>
@@ -25,8 +28,19 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <?php if (isLoggedIn()): ?>
+    <div class="user-menu" style="position:absolute; top:15px; left:20px;">
+        <a href="Customer-orders.php" class="btn btn-outline-success btn-sm">
+            👤 پروفایل کاربری
+        </a>
+        <a href="php/logout.php" class="btn btn-outline-danger btn-sm">
+            خروج
+        </a>
+    </div>
+<?php endif; ?>
+
                   <li class="nav-item ">
-                    <a class="nav-link "  href="index.html">صفحه اصلی</a>
+                    <a class="nav-link "  href="index.php">صفحه اصلی</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="pages/about-us.html">درباره ما</a>
@@ -47,6 +61,7 @@
                 <span style="padding-left: 200px;"></span>               
               </div>
             </div>
+
           </nav>
 
 

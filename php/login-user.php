@@ -3,57 +3,52 @@ session_start();
 require('config.php');
 
 $errors = [];
-$success = '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // دریافت مقادیر
-    $email = isset($_POST['email']) ? mysqli_real_escape_string($connect, trim($_POST['email'])) : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
-    
-    // اعتبارسنجی
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $email = mysqli_real_escape_string($connect, trim($_POST['email'] ?? ''));
+    $password = $_POST['password'] ?? '';
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "ایمیل معتبر وارد کنید";
     }
-    
+
     if (empty($password)) {
         $errors[] = "رمز عبور را وارد کنید";
     }
-    
-    // اگر خطایی نبود
+
     if (empty($errors)) {
-        // هش کردن رمز عبور (md5)
         $hashed_password = md5($password);
-        
-        // جستجو در جدول users
-        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$hashed_password'";
+
+        $sql = "SELECT * FROM users WHERE email='$email' AND password='$hashed_password'";
         $result = mysqli_query($connect, $sql);
-        
-        if ($result && mysqli_num_rows($result) == 1) {
+
+        if ($result && mysqli_num_rows($result) === 1) {
             $user = mysqli_fetch_assoc($result);
-            
-            // ذخیره اطلاعات در session
-            $_SESSION['user_id'] = $user['id'];
+
+            $_SESSION['user_id']   = $user['id'];
             $_SESSION['user_name'] = $user['fullname'];
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['user_type'] = 'user';
-            
-            // هدایت به صفحه اصلی سایت
-            header("Location: ../index.html");
-            exit();
-        } else {
-            // چک کن آیا کاربر اصلاً ثبت نام کرده؟
-            $check_user = "SELECT id FROM users WHERE email = '$email'";
-            $check_result = mysqli_query($connect, $check_user);
-            
-            if (mysqli_num_rows($check_result) > 0) {
-                $errors[] = "رمز عبور اشتباه است";
+
+            // 🔴 ریدایرکت صحیح
+            if (isset($_SESSION['redirect_after_login'])) {
+                $redirect = $_SESSION['redirect_after_login'];
+                unset($_SESSION['redirect_after_login']);
+                header("Location: $redirect");
+                exit;
             } else {
-                $errors[] = "این ایمیل ثبت نشده است. لطفاً ابتدا ثبت نام کنید";
+                header("Location: ../index.php");
+                exit;
             }
+
+        } else {
+            $errors[] = "ایمیل یا رمز عبور اشتباه است";
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">

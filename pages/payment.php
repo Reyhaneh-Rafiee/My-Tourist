@@ -1,14 +1,14 @@
 <?php
-
 require_once 'config.php';
 
-if (!isLoggedIn() || !isset($_GET['order_id'])) {
+if (!isLoggedIn() || !isset($_SESSION['order_id'])) {
     header("Location: tours.php");
     exit();
 }
 
-$order_id = intval($_GET['order_id']);
+$order_id = intval($_SESSION['order_id']);
 $user_id = getCurrentUser();
+
 
 // دریافت اطلاعات سفارش
 $sql = "SELECT o.*, t.title as tour_title 

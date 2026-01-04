@@ -22,7 +22,7 @@
         <div class="col-2">
             <div class="list-item">
                 <a href="index.php">پیشخوان</a>
-                <a href="../index.html">مشاهده سایت</a>
+                <a href="../index.php">مشاهده سایت</a>
                 <a href="add-new-tour.html">تور جدید</a>
                 <a href="orders.php">سفارشات تور</a>
                 <a href="add-new-jazebe.html">جاذبه جدید</a>

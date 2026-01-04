@@ -1,3 +1,59 @@
+<?php
+session_start();
+if(isset($_SESSION['message']) && !empty($_SESSION['message'])){
+    $type = $_SESSION['message_type'] ?? 'info'; // success, danger, warning
+    $message = $_SESSION['message'];
+    // پاک کردن سشن تا بعد از رفرش دوباره نیاد
+    unset($_SESSION['message']);
+    unset($_SESSION['message_type']);
+    ?>
+    <div id="notification" class="notification <?php echo $type; ?>">
+        <span><?php echo $message; ?></span>
+        <button id="okBtn">OK</button>
+    </div>
+
+    <style>
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f0f0f0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 250px;
+        }
+        .notification.success { background-color: #d4edda; color: #155724; }
+        .notification.danger { background-color: #f8d7da; color: #721c24; }
+        .notification.warning { background-color: #fff3cd; color: #856404; }
+
+        #notification button {
+            margin-left: auto;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #notification button:hover {
+            background: #0056b3;
+        }
+    </style>
+
+    <script>
+        document.getElementById('okBtn').addEventListener('click', function() {
+            document.getElementById('notification').style.display = 'none';
+        });
+    </script>
+<?php
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="col-2">
             <div class="list-item">
                 <a href="index.php">پیشخوان</a>
-                <a href="../index.html">مشاهده سایت</a>
+                <a href="../index.php">مشاهده سایت</a>
                 <a href="add-new-tour.html">تور جدید</a>
                 <a href="orders.php">سفارشات تور</a>
                 <a href="add-new-jazebe.html">جاذبه جدید</a>

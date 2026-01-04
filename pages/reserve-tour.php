@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once 'config.php';
 
 // بررسی اگر تور مشخص نشده
@@ -35,6 +36,8 @@ $tour_stmt->close();
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- اضافه کردن کتابخانه تاریخ شمسی -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -118,6 +121,24 @@ $tour_stmt->close();
             box-shadow: 0 0 0 0.2rem rgba(17, 153, 142, 0.25);
         }
         
+        /* استایل مخصوص فیلد تاریخ */
+        .date-input-container {
+            position: relative;
+        }
+        
+        .date-input-container .form-control {
+            padding-left: 45px;
+        }
+        
+        .date-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            z-index: 5;
+        }
+        
         .btn-submit {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             color: white;
@@ -159,6 +180,21 @@ $tour_stmt->close();
         .alert {
             border-radius: 10px;
             border: none;
+        }
+        
+        /* استایل تقویم فارسی */
+        .persian-datepicker {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            z-index: 1051 !important;
+        }
+        
+        .persian-datepicker .pdatepicker-month-year {
+            background-color: #11998e;
+            color: white;
+        }
+        
+        .persian-datepicker .pdatepicker-days td {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
     </style>
 </head>
@@ -209,15 +245,15 @@ $tour_stmt->close();
                 </div>
                 
                 <?php if (!isLoggedIn()): ?>
-                    <!-- پیام برای کاربران وارد نشده -->
+                    <?php $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI']; ?>
                     <div class="login-prompt">
                         <i class="fas fa-exclamation-circle fa-lg me-2"></i>
                         برای رزرو تور باید وارد حساب کاربری خود شوید یا ثبت نام کنید.
                         <div class="mt-3">
-                            <a href="register-form.html" class="btn btn-primary me-2">
+                            <a href="register-form.html?form=register" class="btn btn-primary me-2">
                                 <i class="fas fa-user-plus"></i> ثبت نام
                             </a>
-                            <a href="register-form.html" class="btn btn-outline-primary">
+                            <a href="register-form.html?form=login-user" class="btn btn-outline-primary">
                                 <i class="fas fa-sign-in-alt"></i> ورود
                             </a>
                         </div>
@@ -227,6 +263,9 @@ $tour_stmt->close();
                     <form id="reservationForm" action="process-reservation.php" method="POST">
                         <input type="hidden" name="tour_id" value="<?php echo $tour_id; ?>">
                         <input type="hidden" name="tour_price" value="<?php echo $tour['price']; ?>">
+                        
+                        <!-- فیلد مخفی برای ذخیره تاریخ میلادی -->
+                        <input type="hidden" name="travel_date_miladi" id="travel_date_miladi">
                         
                         <div class="price-display">
                             <span>مبلغ قابل پرداخت: </span>
@@ -300,7 +339,12 @@ $tour_stmt->close();
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <label for="travel_date">تاریخ سفر (اختیاری)</label>
-                                    <input type="date" class="form-control" id="travel_date" name="travel_date">
+                                    <div class="date-input-container">
+                                        <i class="fas fa-calendar-alt date-icon"></i>
+                                        <input type="text" class="form-control" id="travel_date" name="travel_date_shamsi" 
+                                               placeholder="برای انتخاب تاریخ کلیک کنید" autocomplete="off">
+                                    </div>
+                                    <small class="text-muted">تاریخ را به صورت شمسی وارد کنید (مثال: 1403/01/15)</small>
                                 </div>
                             </div>
                         </div>
@@ -321,40 +365,72 @@ $tour_stmt->close();
     </div>
 
     <!-- اسکریپت‌ها -->
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script>
-    // محاسبه قیمت بر اساس تعداد مسافران
-    document.getElementById('travelers').addEventListener('change', function() {
-        const pricePerPerson = <?php echo $tour['price']; ?>;
-        const travelers = this.value;
-        const totalPrice = pricePerPerson * travelers;
-        
-        document.querySelector('.price-display span.text-success').textContent = 
-            totalPrice.toLocaleString('fa-IR') + ' ریال';
-    });
-    
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // محاسبه قیمت
+    const travelersSelect = document.getElementById('travelers');
+    if (travelersSelect) {
+        travelersSelect.addEventListener('change', function () {
+            const pricePerPerson = <?php echo $tour['price']; ?>;
+            const travelers = this.value;
+            const totalPrice = pricePerPerson * travelers;
+
+            document.querySelector('.price-display span.text-success').textContent =
+                totalPrice.toLocaleString('fa-IR') + ' تومان';
+        });
+    }
+
     // اعتبارسنجی فرم
-    document.getElementById('reservationForm').addEventListener('submit', function(e) {
-        const name = document.getElementById('name').value;
-        const phone = document.getElementById('phone').value;
-        const code = document.getElementById('code').value;
-        
-        if (!name || !phone || !code) {
-            e.preventDefault();
-            alert('لطفا تمام فیلدهای ضروری را پر کنید.');
-            return false;
+    const form = document.getElementById('reservationForm');
+    if (form) {
+        form.addEventListener('submit', function (e) {
+
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const code = document.getElementById('code').value.trim();
+
+            if (!name || !phone || !code) {
+                e.preventDefault();
+                alert('لطفا تمام فیلدهای ضروری را پر کنید.');
+                return;
+            }
+
+            if (code.length !== 10) {
+                e.preventDefault();
+                alert('کد ملی باید ۱۰ رقم باشد.');
+                return;
+            }
+
+            // هیچ کاری با تاریخ نمی‌کنیم
+            // persianDatepicker خودش مقدار میلادی رو می‌ذاره
+        });
+    }
+
+    // فعال‌سازی تقویم شمسی
+    $('#travel_date').persianDatepicker({
+        format: 'YYYY/MM/DD',
+        autoClose: true,
+        initialValue: false,
+        observer: true,
+        altField: '#travel_date_miladi',
+        altFormat: 'YYYY-MM-DD',
+        calendar: {
+            persian: {
+                locale: 'fa',
+                showHint: true
+            }
         }
-        
-        if (code.length !== 10) {
-            e.preventDefault();
-            alert('کد ملی باید ۱۰ رقم باشد.');
-            return false;
-        }
-        
-        // ادامه پرداخت
-        return true;
     });
-    </script>
+
+});
+</script>
+
 </body>
 </html>
 <?php $connect->close(); ?>
