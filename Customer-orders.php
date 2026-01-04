@@ -8,6 +8,9 @@ if (!isLoggedIn()) {
 
 $user_id = getCurrentUser(); // گرفتن شناسه کاربر از سشن
 
+// پیام موفقیت لغو
+$cancel_msg = isset($_GET['msg']) ? $_GET['msg'] : '';
+
 // جستجو
 $search = isset($_GET['search']) ? "%".trim($_GET['search'])."%" : "%";
 ?>
@@ -74,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <th>تعداد مسافر</th>
                     <th>قیمت کل</th>
                     <th>وضعیت</th>
+                    <th>عملیات</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -102,11 +106,22 @@ if($result && mysqli_num_rows($result) > 0){
         echo "<td>".$row['travelers']."</td>";
         echo "<td>".$row['total_price']."</td>";
         echo "<td>".htmlspecialchars($row['status'])."</td>";
+        
+        // دکمه لغو فقط اگر وضعیت paid باشد
+        echo "<td>";
+        if($row['status'] === 'paid'){
+            echo '<a href="cancel-order.php?id='.$row['o_id'].'" class="btn btn-danger btn-sm"
+                  onclick="return confirm(\'آیا مطمئن هستید می‌خواهید این سفارش را لغو کنید؟\');">
+                  لغو سفارش</a>';
+        } else {
+            echo "-";
+        }
+        echo "</td>";
         echo "</tr>";
         $row_number++;
     }
 } else {
-    echo "<tr><td colspan='8' class='no-orders'>شما هنوز سفارشی ثبت نکرده‌اید.</td></tr>";
+    echo "<tr><td colspan='9' class='no-orders'>شما هنوز سفارشی ثبت نکرده‌اید.</td></tr>";
 }
 
 mysqli_stmt_close($stmt);
@@ -118,5 +133,28 @@ mysqli_stmt_close($stmt);
 </div>
 
 <button class="btn btn-primary float-end" onclick="window.location.href='index.php'">بازگشت</button>
+
+<!-- Toast پیام لغو سفارش -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="cancelToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <?php echo htmlspecialchars($cancel_msg); ?>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const cancelMsg = "<?php echo $cancel_msg; ?>";
+    if(cancelMsg !== ''){
+        var toastEl = document.getElementById('cancelToast');
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+    }
+});
+</script>
 </body>
 </html>
